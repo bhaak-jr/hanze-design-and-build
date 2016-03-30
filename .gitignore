@@ -1,0 +1,10 @@
+# Ignore compiled java files (.class) and .jar files
+*.class
+*.jar
+
+# Ignore Intellij files
+.idea
+.idea/
+*.iml
+
+# Ignore Eclipse files
