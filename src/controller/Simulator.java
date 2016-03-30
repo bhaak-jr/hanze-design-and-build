@@ -105,9 +105,5 @@ public class Simulator {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args)
-    {
-	    Simulator sim = new Simulator();
-	    sim.run();
-    }
+
 }
