@@ -1,5 +1,9 @@
-package src;
+package src.view;
 import javax.swing.*;
+
+import src.model.Car;
+import src.model.Location;
+
 import java.awt.*;
 
 public class SimulatorView extends JFrame {

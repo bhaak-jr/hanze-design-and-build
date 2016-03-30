@@ -1,5 +1,11 @@
-package src;
+package src.controller;
 import java.util.Random;
+
+import src.model.AdHocCar;
+import src.model.Car;
+import src.model.CarQueue;
+import src.model.Location;
+import src.view.SimulatorView;
 
 public class Simulator {
 

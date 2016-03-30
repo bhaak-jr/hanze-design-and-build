@@ -1,4 +1,5 @@
-package src;
+package src.model;
+
 public abstract class Car {
 
     private Location location;
