@@ -5,11 +5,10 @@ import src.model.Car;
 import src.model.Location;
 
 import java.awt.*;
-import java.awt.event.*;
 
 //Import simulator object needed for the buttons.
 //Please think about better ways of doing this and share it with me ~Bas.
-import static src.Main.sim;
+import static src.runner.SimulationRunner.sim;
 
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
