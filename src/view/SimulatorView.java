@@ -1,13 +1,15 @@
 package src.view;
 import javax.swing.*;
 
-
-
 import src.model.Car;
 import src.model.Location;
 
 import java.awt.*;
 import java.awt.event.*;
+
+//Import simulator object needed for the buttons.
+//Please think about better ways of doing this and share it with me ~Bas.
+import static src.Main.sim;
 
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
@@ -36,8 +38,7 @@ public class SimulatorView extends JFrame {
         stepButton1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-                JOptionPane.showMessageDialog(null, "Doet nog niks, methode moet nog toegevoegd worden");
-				//methode aanroep moet hier komen
+				sim.run(1);
 			}
         });
         
@@ -47,8 +48,7 @@ public class SimulatorView extends JFrame {
         stepButton100.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-                JOptionPane.showMessageDialog(null, "Doet nog niks, methode moet nog toegevoegd worden");
-              //methode aanroep moet hier komen
+                sim.run(100); //Bug: not showing step by step processing.
 			}
         });
         
