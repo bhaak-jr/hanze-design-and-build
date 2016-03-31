@@ -3,7 +3,7 @@ import src.controller.Simulator;
 
 /**
  * Entry point of our application.
- * It creates a new Simulator object method.
+ * It creates a new Simulator object.
  */
 public class Main {
 

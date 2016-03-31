@@ -13,8 +13,8 @@ import static src.Main.sim;
 
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
-    private JButton stepButton1; //button voor 1 stap
-    private JButton stepButton100; //button voor 100 stappen
+    private JButton stepButton1; //button for 1 step
+    private JButton stepButton100; //button for 100 steps
     private JPanel panel1;
     private int numberOfFloors;
     private int numberOfRows;
@@ -32,33 +32,27 @@ public class SimulatorView extends JFrame {
         //frame = new JFrame("test");
         Container contentPane = getContentPane();
         
-        //Maak button aan voor 1 stap
-        stepButton1 = new JButton(); //maak een nieuwe button
-        stepButton1.setText("1 stap"); //set de text
-        stepButton1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				sim.run(1);
-			}
+        //Make a button for 1 step
+        stepButton1 = new JButton(); //Make a new button
+        stepButton1.setText("1 step"); //set the text
+        stepButton1.addActionListener(e -> {
+            sim.run(1); //Bug: not showing step by step processing.
         });
         
-        //Maak button aan voor 100 stappen
-        stepButton100 = new JButton(); //maak een nieuwe button
-        stepButton100.setText("100 stappen"); //set de text
-        stepButton100.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-                sim.run(100); //Bug: not showing step by step processing.
-			}
+        //Make a button for 100 step
+        stepButton100 = new JButton(); //Make a new button
+        stepButton100.setText("100 steps"); //set the text
+        stepButton100.addActionListener(e -> {
+            sim.run(100); //Bug: not showing step by step processing.
         });
         
-        //Maak een nieuwe panel aan
-        //En voeg de twee buttons toe
+        //Make a new panel
+        //And add two buttons
         panel1 = new JPanel();
         panel1.add(stepButton1);
         panel1.add(stepButton100);
         
-        contentPane.add(panel1, BorderLayout.NORTH); //voeg de panel aan de noord positie toe
+        contentPane.add(panel1, BorderLayout.NORTH); //Add the panel to position north
         contentPane.add(carParkView, BorderLayout.CENTER);
         //contentPane.add(population, BorderLayout.SOUTH);
         pack();
