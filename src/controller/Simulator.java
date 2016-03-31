@@ -29,18 +29,14 @@ public class Simulator {
         simulatorView = new SimulatorView(3, 6, 30);
     }
 
-    public void run() {
-        for (int i = 0; i < 10000; i++) {
-            tick();
-        }
-    }
-
+    /**
+     * Altered version of the original run method,
+     * now takes a int parameter.
+     * @param numberOfSteps
+     */
     public void run(int numberOfSteps) {
         for (int i = 0; i < numberOfSteps; i++) {
             tick();
-            if(false){
-                break;
-            }
         }
     }
 
