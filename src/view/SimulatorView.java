@@ -1,13 +1,19 @@
 package src.view;
 import javax.swing.*;
 
+
+
 import src.model.Car;
 import src.model.Location;
 
 import java.awt.*;
+import java.awt.event.*;
 
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
+    private JButton stepButton1; //button voor 1 stap
+    private JButton stepButton100; //button voor 100 stappen
+    private JPanel panel1;
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -20,9 +26,39 @@ public class SimulatorView extends JFrame {
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
         carParkView = new CarParkView();
-
+        
+        //frame = new JFrame("test");
         Container contentPane = getContentPane();
-        //contentPane.add(stepLabel, BorderLayout.NORTH);
+        
+        //Maak button aan voor 1 stap
+        stepButton1 = new JButton(); //maak een nieuwe button
+        stepButton1.setText("1 stap"); //set de text
+        stepButton1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+                JOptionPane.showMessageDialog(null, "Doet nog niks, methode moet nog toegevoegd worden");
+				//methode aanroep moet hier komen
+			}
+        });
+        
+        //Maak button aan voor 100 stappen
+        stepButton100 = new JButton(); //maak een nieuwe button
+        stepButton100.setText("100 stappen"); //set de text
+        stepButton100.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+                JOptionPane.showMessageDialog(null, "Doet nog niks, methode moet nog toegevoegd worden");
+              //methode aanroep moet hier komen
+			}
+        });
+        
+        //Maak een nieuwe panel aan
+        //En voeg de twee buttons toe
+        panel1 = new JPanel();
+        panel1.add(stepButton1);
+        panel1.add(stepButton100);
+        
+        contentPane.add(panel1, BorderLayout.NORTH); //voeg de panel aan de noord positie toe
         contentPane.add(carParkView, BorderLayout.CENTER);
         //contentPane.add(population, BorderLayout.SOUTH);
         pack();
