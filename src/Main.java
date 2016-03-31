@@ -7,8 +7,7 @@ import src.controller.Simulator;
  */
 public class Main {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Simulator sim = new Simulator();
         sim.run();
     }
