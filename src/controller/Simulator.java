@@ -35,9 +35,14 @@ public class Simulator {
      * @param numberOfSteps
      */
     public void run(int numberOfSteps) {
-        for (int i = 0; i < numberOfSteps; i++) {
-            tick();
-        }
+        Thread t = new Thread(new Runnable() { //New thread seperate from the other thread
+            public void run() {
+                for (int i = 0; i < numberOfSteps; i++) {
+                    tick();
+                }
+            }
+        });
+        t.start(); //Start the thread. Thread dies when his task is finished
     }
 
     private void tick() {

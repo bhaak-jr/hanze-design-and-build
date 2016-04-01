@@ -35,14 +35,14 @@ public class SimulatorView extends JFrame {
         stepButton1 = new JButton(); //Make a new button
         stepButton1.setText("1 step"); //set the text
         stepButton1.addActionListener(e -> {
-            sim.run(1); //Bug: not showing step by step processing.
+            sim.run(1);
         });
         
         //Make a button for 100 step
         stepButton100 = new JButton(); //Make a new button
         stepButton100.setText("100 steps"); //set the text
         stepButton100.addActionListener(e -> {
-            sim.run(100); //Bug: not showing step by step processing.
+            sim.run(100);
         });
         
         //Make a new panel
