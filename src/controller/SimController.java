@@ -5,12 +5,12 @@ import src.model.AdHocCar;
 import src.model.Car;
 import src.model.CarQueue;
 import src.model.Location;
-import src.view.SimulatorView;
+import src.view.SimView;
 
-public class Simulator {
+public class SimController {
 
     private CarQueue entranceCarQueue;
-    private SimulatorView simulatorView;
+    private SimView simView;
 
     private int day = 0;
     private int hour = 0;
@@ -24,9 +24,9 @@ public class Simulator {
     int enterSpeed = 3; // number of cars per minute
     int exitSpeed = 10; // number of cars per minute
 
-    public Simulator() {
+    public SimController() {
         entranceCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
+        simView = new SimView(3, 6, 30);
     }
 
     /**
@@ -85,28 +85,28 @@ public class Simulator {
                 break;
             }
             // Find a space for this car.
-            Location freeLocation = simulatorView.getFirstFreeLocation();
+            Location freeLocation = simView.getFirstFreeLocation();
             if (freeLocation != null) {
-                simulatorView.setCarAt(freeLocation, car);
+                simView.setCarAt(freeLocation, car);
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
         }
 
         // Perform car park tick.
-        simulatorView.tick();
+        simView.tick();
 
         // Let cars exit.
         for (int i = 0; i < exitSpeed; i++) {
-            Car car = simulatorView.getFirstLeavingCar();
+            Car car = simView.getFirstLeavingCar();
             if (car == null) {
                 break;
             }
-            simulatorView.removeCarAt(car.getLocation());
+            simView.removeCarAt(car.getLocation());
         }
 
         // Update the car park view.
-        simulatorView.updateView();
+        simView.updateView();
 
         // Pause.
         try {

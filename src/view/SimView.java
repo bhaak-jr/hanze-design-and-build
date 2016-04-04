@@ -8,9 +8,9 @@ import java.awt.*;
 
 //Import simulator object needed for the buttons.
 //Please think about better ways of doing this and share it with me ~Bas.
-import static src.runner.SimulationRunner.sim;
+import static src.runner.SimRunner.sim;
 
-public class SimulatorView extends JFrame {
+public class SimView extends JFrame {
     private CarParkView carParkView;
     private JButton stepButton1; //button for 1 step
     private JButton stepButton100; //button for 100 steps
@@ -20,7 +20,7 @@ public class SimulatorView extends JFrame {
     private int numberOfPlaces;
     private Car[][][] cars;
 
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public SimView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
