@@ -4,6 +4,9 @@ import src.controller.SimController;
 
 /**
  * Created by Bas Haaksema on 04-Apr-16.
+ *
+ * This simulator object holds 2 static fields and are instantiated
+ * when creating a new Simulator class.
  */
 public class Simulator {
 

@@ -28,13 +28,17 @@ public class SimController /* extends AbstractController implements ActionListen
     int paymentSpeed = 10; // number of cars that can pay per minute
     int exitSpeed = 9; // number of cars per minute
 
+    /**
+     * Instantiate the fields of SimController
+     */
     public SimController() {
         entranceCarQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        simView = new SimView(3, 6, 30);
+        simView = new SimView(3, 6, 30); // Creates a new SimView with 3 floors, 6 rows and 30 places in total
     }
 
+    // TODO FROM HERE
     /**
      * Altered version of the original run method,
      * now takes a int parameter.
