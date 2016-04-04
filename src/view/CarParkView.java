@@ -51,7 +51,7 @@ public class CarParkView extends AbstractView {
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {
             size = getSize();
-            carParkImage = createImage(800, 500);
+            carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
         for(int floor = 0; floor < getNumberOfFloors(); floor++) {
