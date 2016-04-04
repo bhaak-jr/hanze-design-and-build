@@ -7,9 +7,6 @@ import src.view.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
-
-
 public class Main {
     private JFrame screen = new JFrame("MVC test with tabbed pane");
     private TestView testView;

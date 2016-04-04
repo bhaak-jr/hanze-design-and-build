@@ -1,2 +1,2 @@
-# Car Park Simulation
-Schoolproject.
+# Project Design & Build
+We are working in a team on an assignment about a car park. A starter project (Java OOP) was provided which contained the core of the car park simulation and a minimal GUI. It was up to your team to both extend and refactor the project code to a well-structured software project, resulting in a realistic car park simulator that can aid in analysing and optimising the daily operations of an actual car park.
