@@ -129,7 +129,7 @@ public class SimView extends JFrame {
                     for (int place = 0; place < getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
                         Car car = getCarAt(location);
-                        if (car != null && car.getMinutesLeft() <= 0) {
+                        if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
                             return car;
                         }
                     }

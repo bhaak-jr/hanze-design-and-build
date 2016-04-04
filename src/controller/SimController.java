@@ -7,9 +7,13 @@ import src.model.CarQueue;
 import src.model.Location;
 import src.view.SimView;
 
+import javax.swing.*;
+
 public class SimController {
 
     private CarQueue entranceCarQueue;
+    private CarQueue paymentCarQueue;
+    private CarQueue exitCarQueue;
     private SimView simView;
 
     private int day = 0;
@@ -22,10 +26,13 @@ public class SimController {
     int weekendArrivals = 90; // average number of cars per hour
 
     int enterSpeed = 3; // number of cars per minute
-    int exitSpeed = 10; // number of cars per minute
+    int paymentSpeed = 10; // number of cars that can pay per minute
+    int exitSpeed = 9; // number of cars per minute
 
     public SimController() {
         entranceCarQueue = new CarQueue();
+        paymentCarQueue = new CarQueue();
+        exitCarQueue = new CarQueue();
         simView = new SimView(3, 6, 30);
     }
 
@@ -96,14 +103,41 @@ public class SimController {
         // Perform car park tick.
         simView.tick();
 
-        // Let cars exit.
-        for (int i = 0; i < exitSpeed; i++) {
+        // Add leaving cars to the exit queue.
+        while (simView.getFirstLeavingCar() != null) {
             Car car = simView.getFirstLeavingCar();
+            car.setIsPaying(true);
+            paymentCarQueue.addCar(car);
+        }
+
+        // Let cars pay.
+        for (int i = 0; i < paymentSpeed; i++) {
+            Car car = paymentCarQueue.removeCar();
             if (car == null) {
                 break;
             }
+            // TODO Handle payment.
             simView.removeCarAt(car.getLocation());
+            exitCarQueue.addCar(car);
         }
+
+        // Let cars leave.
+        for (int i = 0; i < exitSpeed; i++) {
+            Car car = exitCarQueue.removeCar();
+            if (car == null) {
+                break;
+            }
+            // Bye!
+        }
+
+        /** "This code is obsolete by now, but I'll leave it like this for nostalgia's sake" - Danny */
+        //  for (int i = 0; i < exitSpeed; i++) {
+        //      Car car = simView.getFirstLeavingCar();
+        //      if (car == null) {
+        //          break;
+        //      }
+        //      simView.removeCarAt(car.getLocation());
+        //  }
 
         // Update the car park view.
         simView.updateView();

@@ -6,5 +6,7 @@
 .idea
 .idea/
 *.iml
+out
+out/
 
 # Ignore Eclipse files
