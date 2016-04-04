@@ -8,7 +8,7 @@ import java.awt.*;
 
 //Import simulator object needed for the buttons.
 //Please think about better ways of doing this and share it with me ~Bas.
-import static src.runner.SimRunner.sim;
+import static src.main.Simulator.sim;
 
 public class SimView extends JFrame {
     private CarParkView carParkView;
