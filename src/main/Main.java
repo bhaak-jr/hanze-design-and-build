@@ -46,5 +46,8 @@ public class Main {
         jp3.add(testView, BorderLayout.CENTER);
 
         screen.setVisible(true); // otherwise you won't "see" it
+
+        // Debug updateView()
+        carParkView.updateView();
     }
     }

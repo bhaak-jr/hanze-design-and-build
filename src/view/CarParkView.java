@@ -18,12 +18,7 @@ public class CarParkView extends AbstractView {
      */
     public CarParkView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         super(numberOfFloors, numberOfRows, numberOfPlaces);
-        size = new Dimension(800,500); //temporary for testing
-
-        //updateView();
-        //gives an error when used
-        // @BUG debug at this line. Currently gives an error because carParkImage returns null
-
+        size = new Dimension(0, 0);
     }
 
     /**
