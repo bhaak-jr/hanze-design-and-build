@@ -1,4 +1,5 @@
 package src.controller;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 import src.model.AdHocCar;
@@ -7,9 +8,7 @@ import src.model.CarQueue;
 import src.model.Location;
 import src.view.SimView;
 
-import javax.swing.*;
-
-public class SimController {
+public class SimController /* extends AbstractController implements ActionListener */ {
 
     private CarQueue entranceCarQueue;
     private CarQueue paymentCarQueue;

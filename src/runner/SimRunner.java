@@ -1,6 +1,6 @@
 package src.runner;
 
-import src.controller.SimController;
+import src.main.Simulator;
 
 /**
  * Entry point of our application.
@@ -8,10 +8,8 @@ import src.controller.SimController;
  */
 public class SimRunner {
 
-    public static SimController sim;
-
     public static void main(String[] args) {
-        sim = new SimController();
+        new Simulator();
     }
 
 }
