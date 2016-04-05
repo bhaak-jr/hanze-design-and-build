@@ -11,7 +11,7 @@ import java.awt.*;
 import static src.main.Simulator.sim;
 
 public class SimView extends JFrame {
-    private CarParkView carParkView;    // Inner class CarParkView (soon to be an extern class?)
+    private CarParkView carParkView;    // Inner class OldCarParkView (soon to be an extern class?)
     private JButton stepButton1;        // Button for 1 step
     private JButton stepButton100;      // Button for 100 steps
     private JPanel panel1;              // The panel which holds the step 1 and step 100 buttons
@@ -36,7 +36,7 @@ public class SimView extends JFrame {
         this.numberOfPlaces = numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
 
-        // Instantiate a new CarParkView object without parameters.
+        // Instantiate a new OldCarParkView object without parameters.
         // defaults to (int 0, int 0). This is object is the heart of our fancy designed simulation.
         carParkView = new CarParkView();
 

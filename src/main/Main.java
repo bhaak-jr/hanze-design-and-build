@@ -8,9 +8,9 @@ import static src.main.Simulator.sim;
 
 public class Main {
     private JFrame screen = new JFrame("MVC test with tabbed pane");
-    private TestView testView;
-    private CarParkView carParkView;
-    private PieView pieView;
+    private OldTestView testView;
+    private OldCarParkView carParkView;
+    private OldPieView pieView;
     private JButton button1 = new JButton("One step");
     private JButton button2 = new JButton("100 steps");
 
@@ -30,17 +30,17 @@ public class Main {
 
         //Add tabs
         jtp.addTab("Dummytab", jp1);
-        jtp.addTab("CarParkView", jp2);
-        jtp.addTab("TestView", jp3);
+        jtp.addTab("OldCarParkView", jp2);
+        jtp.addTab("OldTestView", jp3);
 
         //dummy label and add this to tab1
-        pieView = new PieView(3, 6, 30);
+        pieView = new OldPieView(3, 6, 30);
         JLabel label1 = new JLabel();
-        label1.setText("PieView");
+        label1.setText("OldPieView");
         jp1.add(pieView, BorderLayout.CENTER);
 
         //create a new carparkview and add this to tab 2
-        carParkView = new CarParkView(3, 6, 30);
+        carParkView = new OldCarParkView(3, 6, 30);
         JPanel jp2Wrapper = new JPanel(); //wrapper to add the 2 buttons
         jp2Wrapper.setLayout(new BoxLayout(jp2Wrapper, BoxLayout.PAGE_AXIS));
         jp2Wrapper.add(button1);
@@ -65,9 +65,9 @@ public class Main {
 
 
         //create a new testview and add this to tab 3
-        testView = new TestView(3, 6, 30);
+        testView = new OldTestView(3, 6, 30);
         JLabel label2 = new JLabel();
-        label2.setText("TestView");
+        label2.setText("OldTestView");
         jp3.add(label2, BorderLayout.NORTH);
         jp3.add(testView, BorderLayout.CENTER);
 

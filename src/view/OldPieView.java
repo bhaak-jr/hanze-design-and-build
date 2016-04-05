@@ -1,19 +1,15 @@
 package src.view;
 
-import src.model.Car;
-import src.model.Location;
-
-import javax.swing.*;
 import java.awt.*;
 
 /**
  * Created by jouke on 4/4/16.
  */
-public class PieView extends AbstractView {
+public class OldPieView extends OldAbstractView {
     private Dimension size;
     private Image carParkImage;
 
-    public PieView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public OldPieView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         super(numberOfFloors, numberOfRows, numberOfPlaces);
         size = new Dimension(0, 0);
     }

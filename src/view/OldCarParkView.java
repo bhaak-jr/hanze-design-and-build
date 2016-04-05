@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by jouke on 4/4/16.
  */
-public class CarParkView extends AbstractView {
+public class OldCarParkView extends OldAbstractView {
 
     private Dimension size;
     private Image carParkImage;
@@ -16,7 +16,7 @@ public class CarParkView extends AbstractView {
     /**
      * Constructor for objects of class CarPark
      */
-    public CarParkView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public OldCarParkView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         super(numberOfFloors, numberOfRows, numberOfPlaces);
         size = new Dimension(0, 0);
     }

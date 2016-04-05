@@ -23,8 +23,8 @@ public class Simulator {
 
     private Model model;
     private JFrame screen = new JFrame("Simulator");
-    private AbstractView carParkView;
-    private AbstractView testView;
+    private OldAbstractView carParkView;
+    private OldAbstractView testView;
     private SimController simController;
 
     public Simulator(){
@@ -35,11 +35,11 @@ public class Simulator {
         main = new Main();
 
 
-        //code based on the main class, check project MVCDDynamicModelThreadGeneralized for reference.
+        //code based on the main class, check project MVCDDynamicModelThreadGeneralized for reference. WIP
         model = new Model();
         simController = new SimController(model);
-        carParkView = new CarParkView(3, 6, 30);
-        testView = new TestView(3, 6, 30);
+        carParkView = new OldCarParkView(3, 6, 30);
+        testView = new OldTestView(3, 6, 30);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
         screen.setSize(1000, 500); // set size of the frame
@@ -50,8 +50,8 @@ public class Simulator {
         JPanel jp2 = new JPanel(new BorderLayout());// This will create the second tab
 
         //Add tabs
-        jtp.addTab("CarParkView", jp1);
-        jtp.addTab("TestView", jp2);
+        jtp.addTab("OldCarParkView", jp1);
+        jtp.addTab("OldTestView", jp2);
 
         jp1.add(simController, BorderLayout.NORTH); //add simController to jp1 (buttons)
         jp1.add(carParkView, BorderLayout.CENTER); //add carParkView to jp1 (view)

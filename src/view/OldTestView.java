@@ -1,18 +1,15 @@
 package src.view;
 
-import src.model.Car;
-import src.model.Location;
-
 import java.awt.*;
 
 /**
  * Created by jouke on 4/4/16.
  */
-public class TestView extends AbstractView {
+public class OldTestView extends OldAbstractView {
     private Dimension size;
     private Image carParkImage;
 
-    public TestView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public OldTestView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         super(numberOfFloors, numberOfRows, numberOfPlaces);
         setSize(200, 200);
         size = new Dimension(0, 0);
