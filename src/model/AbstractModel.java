@@ -4,12 +4,13 @@ import src.view.*;
 import java.util.*;
 
 /**
+ * Abstract superclass for Models.
  * Created by Bas Haaksema on 04-Apr-16.
  */
 public abstract class AbstractModel {
     private List<AbstractView> views;
 
-    public AbstractModel() {
+    AbstractModel() {
         views=new ArrayList<>();
     }
 
@@ -17,7 +18,7 @@ public abstract class AbstractModel {
         views.add(view);
     }
 
-    public void notifyViews() {
+    void notifyViews() {
         views.stream().forEach(AbstractView::updateView);
     }
 }

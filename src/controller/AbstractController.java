@@ -7,10 +7,10 @@ import javax.swing.*;
  * Abstract superclass for controllers.
  * Created by Bas Haaksema on 04-Apr-16.
  */
-public abstract class AbstractController extends JPanel {
-    protected Model model;
+abstract class AbstractController extends JPanel {
+    protected SimModel simModel;
 
-    public AbstractController(Model model) {
-        this.model=model;
+    AbstractController(SimModel simModel) {
+        this.simModel = simModel;
     }
 }

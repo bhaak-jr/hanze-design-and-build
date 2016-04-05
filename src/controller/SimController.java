@@ -5,6 +5,7 @@ import src.model.*;
 import java.awt.event.*;
 
 /**
+ * Controller subclass.
  * Created by Bas Haaksema on 05-Apr-16.
  */
 public class SimController extends AbstractController implements ActionListener {
@@ -12,8 +13,8 @@ public class SimController extends AbstractController implements ActionListener 
     private JButton startButton;
     private JButton stopButton;
 
-    public SimController(Model model) {
-        super(model);
+    public SimController(SimModel simModel) {
+        super(simModel);
 
         setSize(450, 50);
         startButton = new JButton("Start");
@@ -29,11 +30,11 @@ public class SimController extends AbstractController implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==startButton) {
-            model.start();
+        if (e.getSource() == startButton) {
+            simModel.start();
         }
-        if (e.getSource()==stopButton) {
-            model.stop();
+        if (e.getSource() == stopButton) {
+            simModel.stop();
         }
 
     }

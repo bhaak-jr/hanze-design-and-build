@@ -16,19 +16,13 @@ import src.controller.*;
  */
 public class Simulator {
 
-    private Model model;
-    private JFrame screen = new JFrame("Simulator");
-    private AbstractView carParkView;
-    private AbstractView textView;
-    private SimController simController;
-
     public Simulator(){
 
-        //code based on the main class, check project MVCDDynamicModelThreadGeneralized for reference. WIP
-        model = new Model(3, 6, 30);
-        simController = new SimController(model);
-        carParkView = new CarParkView(model);
-        textView = new TextView(model);
+        JFrame screen = new JFrame("Simulator");
+        SimModel simModel = new SimModel(3, 6, 30);
+        SimController simController = new SimController(simModel);
+        AbstractView carParkView = new CarParkView(simModel);
+        AbstractView textView = new TextView(simModel);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
         screen.setSize(1000, 500); // set size of the frame

@@ -9,46 +9,46 @@ public abstract class Car {
     /**
      * Constructor for objects of class Car
      */
-    public Car() {
+    Car() {
 
     }
 
-    public Location getLocation() {
+    Location getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    void setLocation(Location location) {
         this.location = location;
     }
 
-    public int getMinutesLeft() {
+    int getMinutesLeft() {
         return minutesLeft;
     }
 
-    public void setMinutesLeft(int minutesLeft) {
+    void setMinutesLeft(int minutesLeft) {
         this.minutesLeft = minutesLeft;
     }
 
-    public boolean getIsPaying() {
+    boolean getIsPaying() {
         return isPaying;
     }
 
-    public void setIsPaying(boolean isPaying) {
+    void setIsPaying(boolean isPaying) {
         this.isPaying = isPaying;
     }
 
-    public boolean getIsParkingPassHolder() {
+    boolean getIsParkingPassHolder() {
         return isParkingPassHolder;
     }
 
-    public void setIsParkingPassHolder(boolean bool) {
+    void setIsParkingPassHolder(boolean bool) {
         this.isParkingPassHolder = bool;
     }
 
     /**
      * Removes a minute from their minutesLeft field. The car is getting removed when their time is up.
      */
-    public void tick() {
+    void tick() {
         minutesLeft--;
     }
 

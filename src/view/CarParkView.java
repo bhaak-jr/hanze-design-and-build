@@ -4,6 +4,7 @@ import java.awt.*;
 import src.model.*;
 
 /**
+ * View subclass.
  * Created by Bas Haaksema on 05-Apr-16.
  */
 public class CarParkView extends AbstractView {
@@ -14,8 +15,8 @@ public class CarParkView extends AbstractView {
     /**
      * Constructor for objects of class CarPark
      */
-    public CarParkView(Model model) {
-        super(model);
+    public CarParkView(SimModel simModel) {
+        super(simModel);
         size = new Dimension(0, 0);
     }
 
@@ -27,7 +28,7 @@ public class CarParkView extends AbstractView {
     }
 
     /**
-     * Overriden. The car park view component needs to be redisplayed. Copy the
+     * Overridden. The car park view component needs to be redisplayed. Copy the
      * internal image to screen.
      */
     public void paintComponent(Graphics g) {
@@ -52,11 +53,11 @@ public class CarParkView extends AbstractView {
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < getModel().getNumberOfFloors(); floor++) {
-            for(int row = 0; row < model.getNumberOfRows(); row++) {
-                for(int place = 0; place < model.getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < getSimModel().getNumberOfFloors(); floor++) {
+            for(int row = 0; row < simModel.getNumberOfRows(); row++) {
+                for(int place = 0; place < simModel.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = model.getCarAt(location);
+                    Car car = simModel.getCarAt(location);
                     Color color = car == null ? Color.white : Color.red;
                     drawPlace(graphics, location, color);
                 }
