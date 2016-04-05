@@ -4,7 +4,6 @@ import src.main.Simulator;
 
 /**
  * Entry point of our application.
- * It creates a new OldController object.
  */
 public class SimRunner {
 

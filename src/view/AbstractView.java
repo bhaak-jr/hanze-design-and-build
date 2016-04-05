@@ -12,7 +12,7 @@ public abstract class AbstractView extends JPanel {
 
     public AbstractView(Model model) {
         this.model=model;
-        //model.addView(this); //does not work because of the old files.
+        model.addView(this);
     }
 
     public Model getModel() {
