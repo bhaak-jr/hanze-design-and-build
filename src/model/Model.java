@@ -43,7 +43,7 @@ public class Model extends AbstractModel implements Runnable {
     public void run() {
         run = true;
         while(run) {
-            tick();
+            //tick();
             try {
                 Thread.sleep(100);
             } catch (Exception e) {
@@ -52,12 +52,10 @@ public class Model extends AbstractModel implements Runnable {
         }
     }
 
-    /**
-     * A pretty complex class with a lot of code in it.
-     * In summary; Every step advances the time with just 1 minute.
-     * So when you called the 100 steps button, the time advances with 100 minutes.
-     */
-    private void tick() {
+    //A pretty complex class with a lot of code in it.
+    //In summary; Every step advances the time with just 1 minute.
+    //So when you called the 100 steps button, the time advances with 100 minutes.
+    /* private void tick() {
         // Advance the time by one minute.
         minute++;
         // Reset the minute timer if it's over 59 minutes
@@ -164,15 +162,6 @@ public class Model extends AbstractModel implements Runnable {
             // Bye!
         }
 
-        /** "This code is obsolete by now, but I'll leave it like this for nostalgia's sake" - Danny */
-        //  for (int i = 0; i < exitSpeed; i++) {
-        //      Car car = simView.getFirstLeavingCar();
-        //      if (car == null) {
-        //          break;
-        //      }
-        //      simView.removeCarAt(car.getLocation());
-        //  }
-
         // Update the car park view (fill the colors etc) when all these calculations are done.
         simView.updateView();
 
@@ -183,5 +172,5 @@ public class Model extends AbstractModel implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
+    } */
 }
