@@ -53,11 +53,11 @@ public class Main {
         //Add actions to buttons
         button1.addActionListener(e -> {
             // ^ We used a lambda as a shortcut to create an anonymous inner class
-            sim.run(1); // We imported the static Simulator (SimController object) to call this object's run method 1 time.
+            sim.run(1); // We imported the static Simulator (OldController object) to call this object's run method 1 time.
         });
         button2.addActionListener(e -> {
             // ^ We used a lambda as a shortcut to create an anonymous inner class
-            sim.run(100); // We imported the static Simulator (SimController object) to call this object's run method 100 times.
+            sim.run(100); // We imported the static Simulator (OldController object) to call this object's run method 100 times.
         });
         //@todo currently does not work because simview.tick is called in controller and not abstractview.tick
         //@todo this has to be fixed by adding the views to a collection and looping over it to update the views.

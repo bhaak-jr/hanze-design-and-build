@@ -53,7 +53,7 @@ public class SimView extends JFrame {
         // To ensure that the button does something, we add an action listener
         stepButton1.addActionListener(e -> {
             // ^ We used a lambda as a shortcut to create an anonymous inner class
-            sim.run(1); // We imported the static Simulator field (SimController object) to call this object's run method 1 time.
+            sim.run(1); // We imported the static Simulator field (OldController object) to call this object's run method 1 time.
         });
 
         // Make a button for 100 steps
@@ -62,7 +62,7 @@ public class SimView extends JFrame {
         // To ensure that the button does something, we add an action listener
         stepButton100.addActionListener(e -> {
             // ^ We used a lambda as a shortcut to create an anonymous inner class
-            sim.run(100); // We imported the static Simulator (SimController object) to call this object's run method 100 times.
+            sim.run(100); // We imported the static Simulator (OldController object) to call this object's run method 100 times.
         });
         
         // Make a new panel

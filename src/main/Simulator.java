@@ -1,6 +1,6 @@
 package src.main;
 
-import src.controller.SimController;
+import src.controller.OldController;
 
 /**
  * Created by Bas Haaksema on 04-Apr-16.
@@ -10,14 +10,14 @@ import src.controller.SimController;
  */
 public class Simulator {
 
-    public static SimController sim;
+    public static OldController sim;
     public static Main main;
 
     public Simulator(){
-        sim = new SimController();
+        sim = new OldController();
 
         main = new Main();
-        //TEMPORARY split between main and SimController can be merged later on.
+        //TEMPORARY split between main and OldController can be merged later on.
         //For testing purposes it has been split
         // Comment a line out to test one or the other
     }
