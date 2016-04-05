@@ -55,7 +55,7 @@ public class SimView extends JFrame {
             // ^ We used a lambda as a shortcut to create an anonymous inner class
             sim.run(1); // We imported the static Simulator field (SimController object) to call this object's run method 1 time.
         });
-        
+
         // Make a button for 100 steps
         stepButton100 = new JButton(); // Make the button
         stepButton100.setText("100 steps"); //set the text
@@ -217,6 +217,7 @@ public class SimView extends JFrame {
             }
         }
     }
+
 
     /**
      * Checks if a location is valid.

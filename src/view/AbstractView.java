@@ -85,6 +85,26 @@ public abstract class AbstractView extends JPanel {
         return null;
     }
 
+    /**
+     * Get the amount of current spots free (empty locations)
+     * @return int Free spots
+     */
+    public int getFreeLocationAmount() {
+        int freeLocationAmount = 0;
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if(car == null) {
+                        freeLocationAmount++;
+                    }
+                }
+            }
+        }
+        return freeLocationAmount;
+    }
+
     public Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {

@@ -27,7 +27,10 @@ public class PieView extends AbstractView {
 
     public void paintComponent(Graphics g) {
         int maxAmount=(getNumberOfPlaces()*getNumberOfFloors()*getNumberOfRows()); //maximum aantal
-        int currentAmount = 100; //TODO This has to be the actual value of the current ammount of cars currently not working
+        // Calculates the max amount minus the free location amount. 540 max spots - 540 free spots = 0 cars
+        // 540 max spots - 500 free spots = 40 cars, and so on
+        int currentAmount = (maxAmount - getFreeLocationAmount());
+        //JOptionPane.showMessageDialog(null, currentAmount); // TODO If you uncheck this, you can see it works
         int arc = currentAmount * 360 / maxAmount;
 
         g.setColor(Color.BLUE);
