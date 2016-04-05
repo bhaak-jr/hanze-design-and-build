@@ -18,6 +18,6 @@ public abstract class AbstractModel {
     }
 
     public void notifyViews() {
-        //for(AbstractView v: views) v.updateView(); //updateView() not yet implemented
+        views.stream().forEach(AbstractView::updateView);
     }
 }
