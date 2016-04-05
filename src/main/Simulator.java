@@ -25,7 +25,7 @@ public class Simulator {
     public Simulator(){
 
         //code based on the main class, check project MVCDDynamicModelThreadGeneralized for reference. WIP
-        model = new Model();
+        model = new Model(3, 6, 30);
         simController = new SimController(model);
         carParkView = new CarParkView(model);
         textView = new TextView(model);

@@ -25,10 +25,22 @@ public class Model extends AbstractModel implements Runnable {
     int paymentSpeed = 10;              // Number of cars that can pay per minute/iteration
     int exitSpeed = 9;                  // Number of cars that can exit/leave per minute/iteration
 
-    public Model() {
+    private int numberOfFloors;
+    private int numberOfRows;
+    private int numberOfPlaces;
+    private Car[][][] cars;
+
+    public Model(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         entranceCarQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
+
+        this.numberOfFloors = numberOfFloors;
+        this.numberOfRows = numberOfRows;
+        this.numberOfPlaces = numberOfPlaces;
+        cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+
+        notifyViews();
     }
 
     public void start() {
@@ -43,7 +55,7 @@ public class Model extends AbstractModel implements Runnable {
     public void run() {
         run = true;
         while(run) {
-            //tick();
+            tick();
             try {
                 Thread.sleep(100);
             } catch (Exception e) {
@@ -55,7 +67,7 @@ public class Model extends AbstractModel implements Runnable {
     //A pretty complex class with a lot of code in it.
     //In summary; Every step advances the time with just 1 minute.
     //So when you called the 100 steps button, the time advances with 100 minutes.
-    /* private void tick() {
+    private void tick() {
         // Advance the time by one minute.
         minute++;
         // Reset the minute timer if it's over 59 minutes
@@ -112,9 +124,9 @@ public class Model extends AbstractModel implements Runnable {
                 break;
             }
             // Find a space for this car.
-            Location freeLocation = simView.getFirstFreeLocation();
+            Location freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
-                simView.setCarAt(freeLocation, car);
+                setCarAt(freeLocation, car);
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
@@ -122,19 +134,29 @@ public class Model extends AbstractModel implements Runnable {
 
         // Perform car park tick. This method loops over all the places / garage spots,
         // finds a car and then removes a minute from their stayMinutes timer.
-        simView.tick();
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null) {
+                        car.tick();
+                    }
+                }
+            }
+        }
 
         // Add leaving cars to the exit queue. The getFirstLeavingCar method checks for cars who's time is up.
         // The while loop stops when all current spots are not yet ready to leave. In every loop a car is sent to the
         // paymentCarQueue
-        while (simView.getFirstLeavingCar() != null) {
-            Car car = simView.getFirstLeavingCar();
+        while (getFirstLeavingCar() != null) {
+            Car car = getFirstLeavingCar();
             // TODO temporarily mabye. Even the parkingpassholders get this field set to true because it then skips the car on the next loop
             car.setIsPaying(true);
             if (car.getIsParkingPassHolder()) {
                 // If the first Leaving car is a parkingPassHolder then remove the car and add them to
                 // the exitCarQueue immediately
-                simView.removeCarAt(car.getLocation());
+                removeCarAt(car.getLocation());
                 exitCarQueue.addCar(car);
                 continue;   // Skip the paymentCarQueue add() method
             }
@@ -149,7 +171,7 @@ public class Model extends AbstractModel implements Runnable {
                 break;
             }
             // TODO Handle payment.
-            simView.removeCarAt(car.getLocation());
+            removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
         }
 
@@ -163,7 +185,7 @@ public class Model extends AbstractModel implements Runnable {
         }
 
         // Update the car park view (fill the colors etc) when all these calculations are done.
-        simView.updateView();
+        notifyViews();
 
         // Pause.
         // I have no idea about threads and exceptions at this moment.
@@ -172,5 +194,93 @@ public class Model extends AbstractModel implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    } */
+    }
+
+    public void updateView() {
+        notifyViews();
+    }
+
+    public int getNumberOfFloors() {
+        return numberOfFloors;
+    }
+
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    public int getNumberOfPlaces() {
+        return numberOfPlaces;
+    }
+
+    public Car getCarAt(Location location) {
+        if (!locationIsValid(location)) {
+            return null;
+        }
+        return cars[location.getFloor()][location.getRow()][location.getPlace()];
+    }
+
+    public boolean setCarAt(Location location, Car car) {
+        if (!locationIsValid(location)) {
+            return false;
+        }
+        Car oldCar = getCarAt(location);
+        if (oldCar == null) {
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
+            car.setLocation(location);
+            return true;
+        }
+        return false;
+    }
+
+    public Car removeCarAt(Location location) {
+        if (!locationIsValid(location)) {
+            return null;
+        }
+        Car car = getCarAt(location);
+        if (car == null) {
+            return null;
+        }
+        cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+        car.setLocation(null);
+        return car;
+    }
+
+    public Location getFirstFreeLocation() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Car getFirstLeavingCar() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
+                        return car;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private boolean locationIsValid(Location location) {
+        int floor = location.getFloor();
+        int row = location.getRow();
+        int place = location.getPlace();
+        if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
+            return false;
+        }
+        return true;
+    }
 }
