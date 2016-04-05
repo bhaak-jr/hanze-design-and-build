@@ -21,7 +21,7 @@ public class SimView extends JFrame {
     private Car[][][] cars;             // 3 dimensional array to hold Car objects
 
     /**
-     * This constructor does a lot of things. It initiates the number of floors/rows/places.
+     * This constructor does a lot of things. It instantiates the number of floors/rows/places.
      * It then instantiates the cars field as a multidimensional array with their respective number
      * of data it can hold from floors, rows, places (every floor can hold 6 rows in total, every row can
      * hold 30 places in total), etc. All these places can be filled with Car objects.
@@ -87,104 +87,149 @@ public class SimView extends JFrame {
     public void updateView() {
         carParkView.updateView();
     }
-    
-     public int getNumberOfFloors() {
-            return numberOfFloors;
+
+    /**
+     * Get the number of floors
+     * @return number of floors
+     */
+    public int getNumberOfFloors() {
+        return numberOfFloors;
+    }
+
+    /**
+     * Get the number of rows
+     * @return  number of rows
+     */
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
+
+    /**
+     * Get the number of places
+     * @return number of places
+     */
+    public int getNumberOfPlaces() {
+        return numberOfPlaces;
+    }
+
+    /**
+     * Get a Car object based on the location.
+     * @param location  A location object
+     * @return Car      The car that's parked on that location
+     */
+    public Car getCarAt(Location location) {
+        if (!locationIsValid(location)) {
+            return null;
         }
-    
-        public int getNumberOfRows() {
-            return numberOfRows;
-        }
-    
-        public int getNumberOfPlaces() {
-            return numberOfPlaces;
-        }
-    
-        public Car getCarAt(Location location) {
-            if (!locationIsValid(location)) {
-                return null;
-            }
-            return cars[location.getFloor()][location.getRow()][location.getPlace()];
-        }
-    
-        public boolean setCarAt(Location location, Car car) {
-            if (!locationIsValid(location)) {
-                return false;
-            }
-            Car oldCar = getCarAt(location);
-            if (oldCar == null) {
-                cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
-                car.setLocation(location);
-                return true;
-            }
+        return cars[location.getFloor()][location.getRow()][location.getPlace()];
+    }
+
+    /**
+     * Set a car on a certain location
+     * @param location  A location object
+     * @param car       A car object
+     * @return          Returns true if it's successfully set, else false.
+     */
+    public boolean setCarAt(Location location, Car car) {
+        if (!locationIsValid(location)) {
             return false;
         }
-    
-        public Car removeCarAt(Location location) {
-            if (!locationIsValid(location)) {
-                return null;
-            }
-            Car car = getCarAt(location);
-            if (car == null) {
-                return null;
-            }
-            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
-            car.setLocation(null);
-            return car;
-        }
-    
-        public Location getFirstFreeLocation() {
-            for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-                for (int row = 0; row < getNumberOfRows(); row++) {
-                    for (int place = 0; place < getNumberOfPlaces(); place++) {
-                        Location location = new Location(floor, row, place);
-                        if (getCarAt(location) == null) {
-                            return location;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-    
-        public Car getFirstLeavingCar() {
-            for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-                for (int row = 0; row < getNumberOfRows(); row++) {
-                    for (int place = 0; place < getNumberOfPlaces(); place++) {
-                        Location location = new Location(floor, row, place);
-                        Car car = getCarAt(location);
-                        if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
-                            return car;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-    
-        public void tick() {
-            for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-                for (int row = 0; row < getNumberOfRows(); row++) {
-                    for (int place = 0; place < getNumberOfPlaces(); place++) {
-                        Location location = new Location(floor, row, place);
-                        Car car = getCarAt(location);
-                        if (car != null) {
-                            car.tick();
-                        }
-                    }
-                }
-            }
-        }
-    
-        private boolean locationIsValid(Location location) {
-            int floor = location.getFloor();
-            int row = location.getRow();
-            int place = location.getPlace();
-            if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
-                return false;
-            }
+        Car oldCar = getCarAt(location);
+        if (oldCar == null) {
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
+            car.setLocation(location);
             return true;
         }
+        return false;
+    }
+
+    /**
+     * Remove a car on a certain location. Sets the location to null on a car object, and sets coordinates in the
+     * 3 dimensional cars array also to null.
+     * @param location  A location object
+     * @return Car The recently removed car object
+     */
+    public Car removeCarAt(Location location) {
+        if (!locationIsValid(location)) {
+            return null;
+        }
+        Car car = getCarAt(location);
+        if (car == null) {
+            return null;
+        }
+        cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+        car.setLocation(null);
+        return car;
+    }
+
+    /**
+     * Loops over all the floors. Gets the first free location.
+     * @return Location     A location object
+     */
+    public Location getFirstFreeLocation() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Loops over all the floors, and when the car has no minutes left on it's timer, and is not paying at the
+     * same time, then return the first car that's encountered.
+     * @return Car  The Car object
+     */
+    public Car getFirstLeavingCar() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
+                        return car;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     Loops over all floors to get all the Cars if the spot is not empty, then call the tick method.
+     (Removing -1 minute from their timer)
+     */
+    public void tick() {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    if (car != null) {
+                        car.tick();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if a location is valid.
+     */
+    private boolean locationIsValid(Location location) {
+        int floor = location.getFloor();
+        int row = location.getRow();
+        int place = location.getPlace();
+        if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Inner class, is able to generate the big main image you see (Image of the garage, fills the colors etc).

@@ -37,6 +37,9 @@ public abstract class Car {
         this.isPaying = isPaying;
     }
 
+    /**
+     * Removes a minute from their minutesLeft field. The car is getting removed when their time is up.
+     */
     public void tick() {
         minutesLeft--;
     }
