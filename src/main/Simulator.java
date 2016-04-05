@@ -28,17 +28,21 @@ public class Simulator {
     private SimController simController;
 
     public Simulator(){
+        //after refactoring ColdController should be disposed of.
         sim = new OldController();
 
+        //main class for testing.
         main = new Main();
         //TEMPORARY split between main and OldController can be merged later on.
         //For testing purposes it has been split
         // Comment a line out to test one or the other
 
+
+        //code based on the main class, check project MVCDDynamicModelThreadGeneralized for reference.
         model = new Model();
         simController = new SimController(model);
-        carParkView = new CarParkView(3, 6, 30); //needs model
-        testView = new TestView(3, 6, 30); //needs model
+        carParkView = new CarParkView(3, 6, 30);
+        testView = new TestView(3, 6, 30);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
         screen.setSize(1000, 500); // set size of the frame
@@ -52,9 +56,9 @@ public class Simulator {
         jtp.addTab("CarParkView", jp1);
         jtp.addTab("TestView", jp2);
 
-        jp1.add(simController, BorderLayout.NORTH);
-        jp1.add(carParkView, BorderLayout.CENTER);
-        jp2.add(testView, BorderLayout.CENTER);
+        jp1.add(simController, BorderLayout.NORTH); //add simController to jp1 (buttons)
+        jp1.add(carParkView, BorderLayout.CENTER); //add carParkView to jp1 (view)
+        jp2.add(testView, BorderLayout.CENTER); //add carParkView to jp2 (view)
 
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         screen.setVisible(true);
