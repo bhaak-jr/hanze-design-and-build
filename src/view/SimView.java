@@ -289,7 +289,13 @@ public class SimView extends JFrame {
                     for(int place = 0; place < getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
                         Car car = getCarAt(location);
+                        // If there isn't a car on the location spot, make it white, else red
                         Color color = car == null ? Color.white : Color.red;
+                        // If there is a car assign on the location AND it's a parkingpass holder
+                        // overwrite the red color and make it blue
+                        if(car != null && car.getIsParkingPassHolder()) {
+                            color = Color.blue;
+                        }
                         drawPlace(graphics, location, color);
                     }
                 }

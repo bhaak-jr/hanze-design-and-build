@@ -5,7 +5,7 @@ public abstract class Car {
     private Location location;
     private int minutesLeft;
     private boolean isPaying;
-
+    private boolean isParkingPassHolder;
     /**
      * Constructor for objects of class Car
      */
@@ -35,6 +35,14 @@ public abstract class Car {
 
     public void setIsPaying(boolean isPaying) {
         this.isPaying = isPaying;
+    }
+
+    public boolean getIsParkingPassHolder() {
+        return isParkingPassHolder;
+    }
+
+    public void setIsParkingPassHolder(boolean bool) {
+        this.isParkingPassHolder = bool;
     }
 
     /**
