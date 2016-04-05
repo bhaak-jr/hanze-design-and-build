@@ -1,11 +1,8 @@
 package src.main;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import src.view.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 import static src.main.Simulator.sim;
 
@@ -13,6 +10,7 @@ public class Main {
     private JFrame screen = new JFrame("MVC test with tabbed pane");
     private TestView testView;
     private CarParkView carParkView;
+    private PieView pieView;
     private JButton button1 = new JButton("One step");
     private JButton button2 = new JButton("100 steps");
 
@@ -36,9 +34,10 @@ public class Main {
         jtp.addTab("TestView", jp3);
 
         //dummy label and add this to tab1
+        pieView = new PieView(3, 6, 30);
         JLabel label1 = new JLabel();
-        label1.setText("This is Tab 1(dummytab)");
-        jp1.add(label1, BorderLayout.NORTH);
+        label1.setText("PieView");
+        jp1.add(pieView, BorderLayout.CENTER);
 
         //create a new carparkview and add this to tab 2
         carParkView = new CarParkView(3, 6, 30);
