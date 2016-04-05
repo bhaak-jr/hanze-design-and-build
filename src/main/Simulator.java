@@ -33,9 +33,6 @@ public class Simulator {
 
         //main class for testing.
         main = new Main();
-        //TEMPORARY split between main and OldController can be merged later on.
-        //For testing purposes it has been split
-        // Comment a line out to test one or the other
 
 
         //code based on the main class, check project MVCDDynamicModelThreadGeneralized for reference.
