@@ -8,6 +8,8 @@ import src.model.CarQueue;
 import src.model.Location;
 import src.view.SimView;
 
+import javax.swing.*;
+
 public class SimController /* extends AbstractController implements ActionListener */ {
 
     private CarQueue entranceCarQueue;  // A queue for the cars to enter
@@ -98,6 +100,11 @@ public class SimController /* extends AbstractController implements ActionListen
         // we create 9 new AdHocCars() and we all add them to our entranceCarQueue
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
             Car car = new AdHocCar();
+
+            // Generate a random boolean and add it to the car field
+            boolean randomBool = new Random().nextBoolean();
+            car.setIsParkingPassHolder(randomBool); // if true, the car is a parking pass holder
+
             entranceCarQueue.addCar(car);
         }
 
@@ -128,7 +135,15 @@ public class SimController /* extends AbstractController implements ActionListen
         // paymentCarQueue
         while (simView.getFirstLeavingCar() != null) {
             Car car = simView.getFirstLeavingCar();
+            // TODO temporarily mabye. Even the parkingpassholders get this field set to true because it then skips the car on the next loop
             car.setIsPaying(true);
+            if (car.getIsParkingPassHolder()) {
+                // If the first Leaving car is a parkingPassHolder then remove the car and add them to
+                // the exitCarQueue immediately
+                simView.removeCarAt(car.getLocation());
+                exitCarQueue.addCar(car);
+                continue;   // Skip the paymentCarQueue add() method
+            }
             paymentCarQueue.addCar(car);
         }
 
