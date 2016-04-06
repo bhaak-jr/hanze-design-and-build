@@ -11,8 +11,8 @@ public class TextView extends AbstractView {
     /**
      * Constructor for objects of class CarPark
      */
-    public TextView(SimModel simModel) {
-        super(simModel);
+    public TextView(CarParkModel carParkModel) {
+        super(carParkModel);
         int amount = 0;
     }
 

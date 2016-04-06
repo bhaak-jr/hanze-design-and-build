@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by Bas Haaksema on 05-Apr-16.
  */
-public class SimModel extends AbstractModel implements Runnable {
+public class CarParkModel extends AbstractModel implements Runnable {
     private boolean run;
 
     private CarQueueModel entranceCarQueue;  // A queue for the cars to enter
@@ -30,7 +30,7 @@ public class SimModel extends AbstractModel implements Runnable {
     private int numberOfPlaces;
     private CarModel[][][] cars;
 
-    public SimModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public CarParkModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         entranceCarQueue = new CarQueueModel();
         paymentCarQueue = new CarQueueModel();
         exitCarQueue = new CarQueueModel();

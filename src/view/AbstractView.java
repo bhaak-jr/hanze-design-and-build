@@ -9,15 +9,15 @@ import src.model.*;
  */
 
 public abstract class AbstractView extends JPanel {
-    protected SimModel simModel;
+    protected CarParkModel carParkModel;
 
-    AbstractView(SimModel simModel) {
-        this.simModel = simModel;
-        simModel.addView(this);
+    AbstractView(CarParkModel carParkModel) {
+        this.carParkModel = carParkModel;
+        carParkModel.addView(this);
     }
 
-    public SimModel getSimModel() {
-        return simModel;
+    public CarParkModel getCarParkModel() {
+        return carParkModel;
     }
 
     public void updateView() {

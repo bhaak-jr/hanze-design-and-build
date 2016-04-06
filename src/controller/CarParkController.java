@@ -13,8 +13,8 @@ public class CarParkController extends AbstractController implements ActionListe
     private JButton startButton;
     private JButton stopButton;
 
-    public CarParkController(SimModel simModel) {
-        super(simModel);
+    public CarParkController(CarParkModel carParkModel) {
+        super(carParkModel);
 
         setSize(450, 50);
         startButton = new JButton("Start");
@@ -30,10 +30,10 @@ public class CarParkController extends AbstractController implements ActionListe
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startButton) {
-            simModel.start();
+            carParkModel.start();
         }
         if (e.getSource() == stopButton) {
-            simModel.stop();
+            carParkModel.stop();
         }
 
     }

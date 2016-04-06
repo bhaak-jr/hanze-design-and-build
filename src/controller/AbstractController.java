@@ -8,9 +8,9 @@ import javax.swing.*;
  * Created by Bas Haaksema on 04-Apr-16.
  */
 abstract class AbstractController extends JPanel {
-    protected SimModel simModel;
+    protected CarParkModel carParkModel;
 
-    AbstractController(SimModel simModel) {
-        this.simModel = simModel;
+    AbstractController(CarParkModel carParkModel) {
+        this.carParkModel = carParkModel;
     }
 }

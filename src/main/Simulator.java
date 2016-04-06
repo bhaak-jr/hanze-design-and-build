@@ -19,10 +19,10 @@ public class Simulator {
     public Simulator(){
 
         JFrame screen = new JFrame("Simulator");
-        SimModel simModel = new SimModel(3, 6, 30);
-        CarParkController simController = new CarParkController(simModel);
-        AbstractView carParkView = new CarParkView(simModel);
-        AbstractView textView = new TextView(simModel);
+        CarParkModel carParkModel = new CarParkModel(3, 6, 30);
+        CarParkController simController = new CarParkController(carParkModel);
+        AbstractView carParkView = new CarParkView(carParkModel);
+        AbstractView textView = new TextView(carParkModel);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
         screen.setSize(1000, 500); // set size of the frame
@@ -43,7 +43,7 @@ public class Simulator {
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         screen.setVisible(true);
 
-        simModel.updateView();
+        carParkModel.updateView();
 
     }
 }

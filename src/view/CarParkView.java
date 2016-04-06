@@ -15,8 +15,8 @@ public class CarParkView extends AbstractView {
     /**
      * Constructor for objects of class CarPark
      */
-    public CarParkView(SimModel simModel) {
-        super(simModel);
+    public CarParkView(CarParkModel carParkModel) {
+        super(carParkModel);
         size = new Dimension(0, 0);
     }
 
@@ -53,11 +53,11 @@ public class CarParkView extends AbstractView {
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < getSimModel().getNumberOfFloors(); floor++) {
-            for(int row = 0; row < simModel.getNumberOfRows(); row++) {
-                for(int place = 0; place < simModel.getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < getCarParkModel().getNumberOfFloors(); floor++) {
+            for(int row = 0; row < carParkModel.getNumberOfRows(); row++) {
+                for(int place = 0; place < carParkModel.getNumberOfPlaces(); place++) {
                     LocationModel location = new LocationModel(floor, row, place);
-                    CarModel car = simModel.getCarAt(location);
+                    CarModel car = carParkModel.getCarAt(location);
                     Color color = car == null ? Color.white : Color.red;
                     drawPlace(graphics, location, color);
                 }
