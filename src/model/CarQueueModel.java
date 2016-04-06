@@ -3,7 +3,7 @@ package src.model;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class CarQueue {
+class CarQueueModel {
     private Queue<Car> queue = new LinkedList<>();
 
     boolean addCar(Car car) {

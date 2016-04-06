@@ -13,6 +13,7 @@ public class TextView extends AbstractView {
      */
     public TextView(SimModel simModel) {
         super(simModel);
+        int amount = 0;
     }
 
     // TODO create basic functionality

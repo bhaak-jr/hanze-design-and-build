@@ -5,7 +5,7 @@ import src.main.Simulator;
 /**
  * Entry point of our application.
  */
-public class SimRunner {
+public class CarParkRunner {
 
     /**
      * This is where it all starts. This method creates a new Simulator() object.

@@ -20,7 +20,7 @@ public class Simulator {
 
         JFrame screen = new JFrame("Simulator");
         SimModel simModel = new SimModel(3, 6, 30);
-        SimController simController = new SimController(simModel);
+        CarParkController simController = new CarParkController(simModel);
         AbstractView carParkView = new CarParkView(simModel);
         AbstractView textView = new TextView(simModel);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane

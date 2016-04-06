@@ -8,9 +8,9 @@ import java.util.Random;
 public class SimModel extends AbstractModel implements Runnable {
     private boolean run;
 
-    private CarQueue entranceCarQueue;  // A queue for the cars to enter
-    private CarQueue paymentCarQueue;   // A queue for the cars to spend their dolla dolla bill y'all
-    private CarQueue exitCarQueue;      // A queue for the cars to exit
+    private CarQueueModel entranceCarQueue;  // A queue for the cars to enter
+    private CarQueueModel paymentCarQueue;   // A queue for the cars to spend their dolla dolla bill y'all
+    private CarQueueModel exitCarQueue;      // A queue for the cars to exit
 
     private int day = 0;                // Initial value for the current day
     private int hour = 0;               // Initial value for the current hour
@@ -31,9 +31,9 @@ public class SimModel extends AbstractModel implements Runnable {
     private Car[][][] cars;
 
     public SimModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
-        entranceCarQueue = new CarQueue();
-        paymentCarQueue = new CarQueue();
-        exitCarQueue = new CarQueue();
+        entranceCarQueue = new CarQueueModel();
+        paymentCarQueue = new CarQueueModel();
+        exitCarQueue = new CarQueueModel();
 
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
@@ -105,7 +105,7 @@ public class SimModel extends AbstractModel implements Runnable {
         // Lets say that the average numberOfCarsPerMinute is 9. That means that in it's current iteration/tick
         // we create 9 new AdHocCars() and we all add them to our entranceCarQueue
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            Car car = new AdHocCar();
+            Car car = new AdHocCarModel();
 
             // Generate a random boolean and add it to the car field
             boolean randomBool = new Random().nextBoolean();
