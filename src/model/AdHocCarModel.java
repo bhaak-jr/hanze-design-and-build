@@ -1,6 +1,6 @@
 package src.model;
 
-class AdHocCarModel extends Car {
+class AdHocCarModel extends CarModel {
     AdHocCarModel() {
 
     }

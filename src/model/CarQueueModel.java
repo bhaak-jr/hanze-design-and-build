@@ -4,13 +4,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 class CarQueueModel {
-    private Queue<Car> queue = new LinkedList<>();
+    private Queue<CarModel> queue = new LinkedList<>();
 
-    boolean addCar(Car car) {
+    boolean addCar(CarModel car) {
         return queue.add(car);
     }
 
-    Car removeCar() {
+    CarModel removeCar() {
         return queue.poll();
     }
 

@@ -56,8 +56,8 @@ public class CarParkView extends AbstractView {
         for(int floor = 0; floor < getSimModel().getNumberOfFloors(); floor++) {
             for(int row = 0; row < simModel.getNumberOfRows(); row++) {
                 for(int place = 0; place < simModel.getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    Car car = simModel.getCarAt(location);
+                    LocationModel location = new LocationModel(floor, row, place);
+                    CarModel car = simModel.getCarAt(location);
                     Color color = car == null ? Color.white : Color.red;
                     drawPlace(graphics, location, color);
                 }
@@ -69,7 +69,7 @@ public class CarParkView extends AbstractView {
     /**
      * Paint a place on this car park view in a given color.
      */
-    private void drawPlace(Graphics graphics, Location location, Color color) {
+    private void drawPlace(Graphics graphics, LocationModel location, Color color) {
         graphics.setColor(color);
         graphics.fillRect(
                 location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
