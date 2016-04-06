@@ -22,7 +22,6 @@ public class SimController extends AbstractController implements ActionListener 
         stopButton = new JButton("Stop");
         stopButton.addActionListener(this);
 
-        this.setLayout(null);
         add(startButton);
         add(stopButton);
 
