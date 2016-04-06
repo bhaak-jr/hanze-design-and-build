@@ -57,7 +57,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         while(run) {
             tick();
             try {
-                Thread.sleep(100);
+                Thread.sleep(1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
