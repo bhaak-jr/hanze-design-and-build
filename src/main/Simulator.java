@@ -43,5 +43,7 @@ public class Simulator {
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         screen.setVisible(true);
 
+        simModel.updateView();
+
     }
 }

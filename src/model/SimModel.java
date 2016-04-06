@@ -219,7 +219,7 @@ public class SimModel extends AbstractModel implements Runnable {
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
 
-    public boolean setCarAt(Location location, Car car) {
+    private boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
         }
@@ -232,7 +232,7 @@ public class SimModel extends AbstractModel implements Runnable {
         return false;
     }
 
-    public Car removeCarAt(Location location) {
+    private Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
@@ -245,7 +245,7 @@ public class SimModel extends AbstractModel implements Runnable {
         return car;
     }
 
-    public Location getFirstFreeLocation() {
+    private Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -259,7 +259,7 @@ public class SimModel extends AbstractModel implements Runnable {
         return null;
     }
 
-    public Car getFirstLeavingCar() {
+    private Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
