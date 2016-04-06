@@ -64,6 +64,17 @@ public class CarParkModel extends AbstractModel implements Runnable {
         }
     }
 
+    public void run(int numberOfSteps) {
+        for (int i = 0; i < numberOfSteps; i++) {
+            tick();
+            try {
+                Thread.sleep(1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     //A pretty complex class with a lot of code in it.
     //In summary; Every step advances the time with just 1 minute.
     //So when you called the 100 steps button, the time advances with 100 minutes.

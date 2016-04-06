@@ -12,18 +12,29 @@ public class CarParkController extends AbstractController implements ActionListe
 
     private JButton startButton;
     private JButton stopButton;
+    private JButton plusOneButton;
+    private JButton plusHundredButton;
 
     public CarParkController(CarParkModel carParkModel) {
         super(carParkModel);
 
         setSize(450, 50);
+
         startButton = new JButton("Start");
         startButton.addActionListener(this);
+        add(startButton);
+
         stopButton = new JButton("Stop");
         stopButton.addActionListener(this);
-
-        add(startButton);
         add(stopButton);
+
+        plusOneButton = new JButton("+1 tick");
+        plusOneButton.addActionListener(this);
+        add(plusOneButton);
+
+        plusHundredButton = new JButton("+100 ticks");
+        plusHundredButton.addActionListener(this);
+        add(plusHundredButton);
 
         setVisible(true);
     }
@@ -34,6 +45,12 @@ public class CarParkController extends AbstractController implements ActionListe
         }
         if (e.getSource() == stopButton) {
             carParkModel.stop();
+        }
+        if (e.getSource() == plusOneButton) {
+            carParkModel.run(1);
+        }
+        if (e.getSource() == plusHundredButton) {
+            carParkModel.run(100);
         }
 
     }
