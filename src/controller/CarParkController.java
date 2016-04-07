@@ -1,6 +1,7 @@
 package src.controller;
 
 import javax.swing.*;
+import java.util.Hashtable;
 import src.model.*;
 
 /**
@@ -12,9 +13,9 @@ public class CarParkController extends AbstractController {
     public CarParkController(CarParkModel carParkModel) {
         super(carParkModel);
 
-        JButton startButton = new JButton("Start");
-        startButton.addActionListener(e -> carParkModel.start());
-        add(startButton);
+        JButton startButton = new JButton("Start"); // Create Button
+        startButton.addActionListener(e -> carParkModel.start()); // Add Listener
+        add(startButton); // Add to JPanel
 
         JButton stopButton = new JButton("Stop");
         stopButton.addActionListener(e -> carParkModel.stop());
@@ -44,6 +45,11 @@ public class CarParkController extends AbstractController {
                 carParkModel.setTickPause(source.getMaximum() - source.getValue());
             }
         });
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
+        labelTable.put(speedSlider.getMaximum()/10, new JLabel("Slow"));
+        labelTable.put(speedSlider.getMaximum()/10*9, new JLabel("Fast"));
+        speedSlider.setLabelTable(labelTable);
+        speedSlider.setPaintLabels(true);
         add(speedSlider);
 
         setVisible(true);
