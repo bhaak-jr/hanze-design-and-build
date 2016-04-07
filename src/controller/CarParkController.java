@@ -59,6 +59,7 @@ public class CarParkController extends AbstractController implements ActionListe
         if (e.getSource() == plusHundredButton) {
             carParkModel.run(100);
         }
+    }
 
     public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider)e.getSource();
