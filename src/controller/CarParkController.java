@@ -37,14 +37,14 @@ public class CarParkController extends AbstractController implements ActionListe
 
         plusHundredButton = new JButton("+100 ticks");
         plusHundredButton.addActionListener(this);
-        add(plusHundredButton);
+        //add(plusHundredButton);
 
         resetButton = new JButton("Reset");
         resetButton.addActionListener(this);
-        add(resetButton);
+        //add(resetButton);
 
         speedSlider = new JSlider(SwingConstants.HORIZONTAL);
-        speedSlider.setMajorTickSpacing(10);
+        speedSlider.setMajorTickSpacing(1);
         speedSlider.addChangeListener(this);
         add(speedSlider);
 
@@ -65,6 +65,9 @@ public class CarParkController extends AbstractController implements ActionListe
 
     public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider)e.getSource();
-        if (!source.getValueIsAdjusting())      carParkModel.setTickPause(100-source.getValue());
+        if (!source.getValueIsAdjusting()) {
+            carParkModel.setTickPause(100 - source.getValue());
+            System.out.print(100 - source.getValue());
+        }
     }
 }
