@@ -21,7 +21,7 @@ public class GraphView extends AbstractView {
     public GraphView(CarParkModel carParkModel){
         super(carParkModel);
         updateView();
-        mainPanel.setPreferredSize(new Dimension(500, 400));
+        mainPanel.setPreferredSize(getPreferredSize());
         add(mainPanel); //add it to the panel so it gets displayed
     }
 
@@ -29,7 +29,7 @@ public class GraphView extends AbstractView {
      * Overridden. Tell the GUI manager how big we would like to be.
      */
     public Dimension getPreferredSize() {
-        return new Dimension(800, 500);
+        return new Dimension(400, 400);
     }
 
     public void updateView() {
