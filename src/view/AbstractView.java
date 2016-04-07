@@ -9,14 +9,14 @@ import src.model.*;
  */
 
 public abstract class AbstractView extends JPanel {
-    protected CarParkModel carParkModel;
+    CarParkModel carParkModel;
 
     AbstractView(CarParkModel carParkModel) {
         this.carParkModel = carParkModel;
         carParkModel.addView(this);
     }
 
-    public CarParkModel getCarParkModel() {
+    CarParkModel getCarParkModel() {
         return carParkModel;
     }
 

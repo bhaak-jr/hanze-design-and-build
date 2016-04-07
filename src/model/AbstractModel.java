@@ -18,7 +18,7 @@ public abstract class AbstractModel {
         views.add(view);
     }
 
-    void notifyViews() {
+    public void notifyViews() {
         views.stream().forEach(AbstractView::updateView);
     }
 }
