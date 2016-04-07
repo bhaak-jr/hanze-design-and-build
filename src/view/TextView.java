@@ -10,15 +10,22 @@ import javax.swing.*;
  */
 public class TextView extends AbstractView {
 
+    private JLabel amountOfCarsInTheParkLabel = new JLabel("Amount of cars in the park: ");
+    private JLabel amountOfCarsInTheParkValue = new JLabel();
     /**
      * Constructor for objects of class CarPark
      */
     public TextView(CarParkModel carParkModel) {
         super(carParkModel);
+        add(amountOfCarsInTheParkLabel);
+        add(amountOfCarsInTheParkValue); //add it to the panel so it gets displayed
+        updateView();
     }
 
-    // TODO create basic functionality
+    /**
+     * Actions that are performed when the view is updated
+     */
     public void updateView() {
-        System.out.println(carParkModel.getAmountOfCarsInThePark());
+        amountOfCarsInTheParkValue.setText(String.valueOf(carParkModel.getAmountOfCarsInThePark())); //get the string value of the integer amountOfCarsInThePark
     }
 }
