@@ -16,7 +16,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
     private int hour = 0;               // Initial value for the current hour
     private int minute = 0;             // Initial value for the current minute
 
-    private int tickPause = 100;
+    private int tickPause = 50;
 
     int weekDayArrivals = 50;           // Average number of cars per hour
     int weekendArrivals = 90;           // Average number of cars per hour
@@ -44,11 +44,13 @@ public class CarParkModel extends AbstractModel implements Runnable {
     }
 
     public void start() {
-        new Thread(this).start();
+        if(!run) {
+            new Thread(this).start();
+        }
     }
 
     public void stop() {
-        run=false;
+        run = false;
     }
 
     @Override
@@ -56,21 +58,13 @@ public class CarParkModel extends AbstractModel implements Runnable {
         run = true;
         while(run) {
             tick();
-            try {
-                Thread.sleep(1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 
     public void run(int numberOfSteps) {
-        for (int i = 0; i < numberOfSteps; i++) {
-            tick();
-            try {
-                Thread.sleep(1);
-            } catch (Exception e) {
-                e.printStackTrace();
+        if(!run) {
+            for (int i = 0; i < numberOfSteps; i++) {
+                tick();
             }
         }
     }
@@ -199,7 +193,6 @@ public class CarParkModel extends AbstractModel implements Runnable {
         notifyViews();
 
         // Pause.
-        // I have no idea about threads and exceptions at this moment.
         try {
             Thread.sleep(tickPause);
         } catch (InterruptedException e) {
