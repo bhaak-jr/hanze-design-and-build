@@ -203,6 +203,8 @@ public class CarParkModel extends AbstractModel implements Runnable {
         }
     }
 
+    public void setTickPause(int myTickPause) { tickPause = myTickPause; }
+
     public void updateView() {
         notifyViews();
     }

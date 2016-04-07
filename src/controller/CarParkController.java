@@ -3,17 +3,19 @@ package src.controller;
 import javax.swing.*;
 import src.model.*;
 import java.awt.event.*;
+import javax.swing.event.*;
 
 /**
  * Controller subclass.
  * Created by Bas Haaksema on 05-Apr-16.
  */
-public class CarParkController extends AbstractController implements ActionListener {
+public class CarParkController extends AbstractController implements ActionListener, ChangeListener {
 
     private JButton startButton;
     private JButton stopButton;
     private JButton plusOneButton;
     private JButton plusHundredButton;
+    private JSlider speedSlider;
 
     public CarParkController(CarParkModel carParkModel) {
         super(carParkModel);
@@ -36,6 +38,11 @@ public class CarParkController extends AbstractController implements ActionListe
         plusHundredButton.addActionListener(this);
         add(plusHundredButton);
 
+        speedSlider = new JSlider(SwingConstants.HORIZONTAL);
+        speedSlider.setMajorTickSpacing(10);
+        speedSlider.addChangeListener(this);
+        add(speedSlider);
+
         setVisible(true);
     }
 
@@ -53,5 +60,11 @@ public class CarParkController extends AbstractController implements ActionListe
             carParkModel.run(100);
         }
 
+    public void stateChanged(ChangeEvent e) {
+        JSlider source = (JSlider)e.getSource();
+        if (!source.getValueIsAdjusting()) {
+            int speed = source.getValue();
+            carParkModel.setTickPause(100-speed);
+        }
     }
 }
