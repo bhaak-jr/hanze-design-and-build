@@ -26,6 +26,7 @@ public class CarParkController extends AbstractController {
 
         JButton plusHundredButton = new JButton("+100 ticks");
         plusHundredButton.addActionListener(e -> carParkModel.run(100));
+        // TODO Secure threading
         //add(plusHundredButton);
 
         JButton resetButton = new JButton("Reset");
@@ -40,7 +41,7 @@ public class CarParkController extends AbstractController {
         speedSlider.addChangeListener(e -> {
             JSlider source = (JSlider)e.getSource();
             if (!source.getValueIsAdjusting()) {
-                carParkModel.setTickPause(100 - source.getValue());
+                carParkModel.setTickPause(source.getMaximum() - source.getValue());
             }
         });
         add(speedSlider);

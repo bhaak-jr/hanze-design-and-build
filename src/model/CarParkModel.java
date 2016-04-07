@@ -61,7 +61,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         }
     }
 
-    // Dirty overload
+    // TODO Secure threading
     public void run(int numberOfSteps) {
         if (!run) {
             new Thread(() -> {
