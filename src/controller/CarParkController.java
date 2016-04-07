@@ -58,7 +58,8 @@ public class CarParkController extends AbstractController implements ActionListe
         if (e.getSource() == plusHundredButton) carParkModel.run(100);
         if (e.getSource() == resetButton){
             carParkModel.notifyViews();
-            //carParkModel.reset();
+            // TODO Implement reset functionality
+            // carParkModel.reset();
         }
     }
 
