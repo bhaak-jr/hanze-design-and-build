@@ -19,53 +19,41 @@ public class Simulator {
     public Simulator(){
 
         JFrame screen = new JFrame("Simulator");
+        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        screen.setSize(1024, 512); // set size of the frame
+
         CarParkModel carParkModel = new CarParkModel(3, 6, 30);
-
-        CarParkController ctrl0 = new CarParkController(carParkModel);
-        CarParkController ctrl1 = new CarParkController(carParkModel);
-        CarParkController ctrl2 = new CarParkController(carParkModel);
-        CarParkController ctrl3 = new CarParkController(carParkModel);
-
-        AbstractView carParkView = new CarParkView(carParkModel);
-        AbstractView textView = new TextView(carParkModel);
-        AbstractView pieView = new PieView(carParkModel);
-        AbstractView graphView = new GraphView(carParkModel);
-
+        CarParkController controller = new CarParkController(carParkModel);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
-        screen.setSize(1000, 500); // set size of the frame
-        screen.getContentPane().add(jtp); //add the tabbed pane
+        screen.getContentPane().add(jtp, BorderLayout.CENTER); //add the tabbed pane
+        screen.getContentPane().add(controller, BorderLayout.SOUTH); //add buttons
 
-        //Create a panel for each tab
-        JPanel jp1 = new JPanel(new BorderLayout());// This will create the first tab
-        JPanel jp2 = new JPanel(new BorderLayout());// This will create the second tab
-        JPanel jp3 = new JPanel(new BorderLayout());// This will create the third tab
-        JPanel jp4 = new JPanel(new BorderLayout());// This will create the fourth tab
+        // Create a panel for each tab
+        JPanel jp1 = new JPanel(new BorderLayout());
+        JPanel jp2 = new JPanel(new BorderLayout());
+        JPanel jp3 = new JPanel(new BorderLayout());
+        JPanel jp4 = new JPanel(new BorderLayout());
 
-
-
-        //Add tabs
+        // Add tabs
         jtp.addTab("CarParkView", jp1);
         jtp.addTab("TextView", jp2);
         jtp.addTab("PieView", jp3);
         jtp.addTab("GraphView", jp4);
 
-        jp1.add(ctrl0, BorderLayout.NORTH); //add simController to jp1 (buttons)
-        jp1.add(carParkView, BorderLayout.CENTER); //add carParkView to jp1 (view)
+        // Create views
+        AbstractView carParkView = new CarParkView(carParkModel);
+        AbstractView textView = new TextView(carParkModel);
+        AbstractView pieView = new PieView(carParkModel);
+        AbstractView graphView = new GraphView(carParkModel);
 
-        jp2.add(ctrl1, BorderLayout.NORTH); //add simController to jp2 (buttons)
-        jp2.add(textView, BorderLayout.CENTER); //add carParkView to jp2 (view)
+        // Add views to tabs
+        jp1.add(carParkView, BorderLayout.CENTER);
+        jp2.add(textView, BorderLayout.CENTER);
+        jp3.add(pieView, BorderLayout.CENTER);
+        jp4.add(graphView, BorderLayout.CENTER);
 
-        jp3.add(ctrl2, BorderLayout.NORTH); //add simController to jp3 (buttons)
-        jp3.add(pieView, BorderLayout.CENTER); //add pieView to jp3 (view)
-
-        jp4.add(ctrl3, BorderLayout.NORTH); //add simController to jp4 (buttons)
-        jp4.add(graphView, BorderLayout.CENTER); //add graphView to jp4 (view)
-
-        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.setVisible(true);
-
         carParkModel.notifyViews();
-
     }
 }
