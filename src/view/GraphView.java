@@ -15,24 +15,12 @@ import src.model.GraphModel;
 public class GraphView extends AbstractView {
     private Dimension size;
     private GraphModel graphModel;
-    private List<Double> scores;
+    List<Double> scores = new ArrayList<>();
+    GraphModel mainPanel = new GraphModel(scores);
 
-
-   /* public GraphView(CarParkModel carParkModel) {
-        super(carParkModel);
-        List<Double> scores = new ArrayList<Double>();
-        scores.add((double) 5);
-        scores.add((double) 10);
-        GraphModel graph = new GraphModel(scores);
-        graph.setPreferredSize(new Dimension(800, 600));
-        updateView();
-    }*/
     public GraphView(CarParkModel carParkModel){
         super(carParkModel);
-        List<Double> scores = new ArrayList<>();
-        scores.add((double) 5);
-        scores.add((double) 10);
-        GraphModel mainPanel = new GraphModel(scores);
+        updateView();
         mainPanel.setPreferredSize(new Dimension(500, 400));
         add(mainPanel); //add it to the panel so it gets displayed
     }
@@ -44,4 +32,10 @@ public class GraphView extends AbstractView {
         return new Dimension(800, 500);
     }
 
+    public void updateView() {
+        int currentAmount = carParkModel.getAmountOfCarsInThePark(); //get the current amount of cars in the park
+        //System.out.println(currentAmount);
+        scores.add((double) currentAmount); //y value added with x+1
+
+    }
 }
