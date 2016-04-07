@@ -61,11 +61,14 @@ public class CarParkModel extends AbstractModel implements Runnable {
         }
     }
 
+    // Dirty overload
     public void run(int numberOfSteps) {
         if(!run) {
-            for (int i = 0; i < numberOfSteps; i++) {
-                tick();
-            }
+            new Thread( () -> {
+                for (int i = 0; i < numberOfSteps; i++) {
+                    tick();
+                }
+            }).start();
         }
     }
 
