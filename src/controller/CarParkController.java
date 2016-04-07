@@ -15,6 +15,7 @@ public class CarParkController extends AbstractController implements ActionListe
     private JButton stopButton;
     private JButton plusOneButton;
     private JButton plusHundredButton;
+    private JButton resetButton;
     private JSlider speedSlider;
 
     public CarParkController(CarParkModel carParkModel) {
@@ -38,6 +39,10 @@ public class CarParkController extends AbstractController implements ActionListe
         plusHundredButton.addActionListener(this);
         add(plusHundredButton);
 
+        resetButton = new JButton("Reset");
+        resetButton.addActionListener(this);
+        add(resetButton);
+
         speedSlider = new JSlider(SwingConstants.HORIZONTAL);
         speedSlider.setMajorTickSpacing(10);
         speedSlider.addChangeListener(this);
@@ -47,25 +52,17 @@ public class CarParkController extends AbstractController implements ActionListe
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == startButton) {
-            carParkModel.start();
-        }
-        if (e.getSource() == stopButton) {
-            carParkModel.stop();
-        }
-        if (e.getSource() == plusOneButton) {
-            carParkModel.run(1);
-        }
-        if (e.getSource() == plusHundredButton) {
-            carParkModel.run(100);
+        if (e.getSource() == startButton)       carParkModel.start();
+        if (e.getSource() == stopButton)        carParkModel.stop();
+        if (e.getSource() == plusOneButton)     carParkModel.run(1);
+        if (e.getSource() == plusHundredButton) carParkModel.run(100);
+        if (e.getSource() == resetButton){
+            //carParkModel.reset();
         }
     }
 
     public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider)e.getSource();
-        if (!source.getValueIsAdjusting()) {
-            int speed = source.getValue();
-            carParkModel.setTickPause(100-speed);
-        }
+        if (!source.getValueIsAdjusting())      carParkModel.setTickPause(100-source.getValue());
     }
 }
