@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.util.Hashtable;
 import src.model.*;
 
+import java.awt.*;
+
 /**
  * Controller subclass.
  * Created by Bas Haaksema on 05-Apr-16.

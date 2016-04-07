@@ -3,6 +3,8 @@ package src.view;
 import java.awt.*;
 import src.model.*;
 
+import javax.swing.*;
+
 /**
  * View subclass.
  * Created by Bas Haaksema on 05-Apr-16.
@@ -59,6 +61,13 @@ public class CarParkView extends AbstractView {
                     LocationModel location = new LocationModel(floor, row, place);
                     CarModel car = carParkModel.getCarAt(location);
                     Color color = car == null ? Color.white : Color.red;
+                    if(car != null && car.getIsParkingPassHolder()) {
+                        color = Color.blue;
+                    } else if(car != null && car.getIsBadParker()) {
+                        color = Color.green;
+                    } else if(car != null && car instanceof ReservationCarModel) {
+                        color = Color.magenta;
+                    }
                     drawPlace(graphics, location, color);
                 }
             }

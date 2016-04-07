@@ -1,5 +1,6 @@
 package src.model;
 
+import javax.swing.*;
 import java.util.Random;
 
 /**
@@ -119,6 +120,10 @@ public class CarParkModel extends AbstractModel implements Runnable {
             boolean randomBool = new Random().nextBoolean();
             car.setIsParkingPassHolder(randomBool); // if true, the car is a parking pass holder
 
+            // Generate a random int to see if the driver is a bad parker or not
+            int randomInt = new Random().nextInt(100);
+            car.setIsBadParker(randomInt);
+
             entranceCarQueue.addCar(car);
         }
 
@@ -135,6 +140,10 @@ public class CarParkModel extends AbstractModel implements Runnable {
             LocationModel freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
                 setCarAt(freeLocation, car);
+                if(car.getIsBadParker()) {
+                    LocationModel secondFreeLocation = getFirstFreeLocation();
+                    setCarAt(secondFreeLocation, car);
+                }
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
             }
@@ -159,7 +168,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // paymentCarQueue
         while (getFirstLeavingCar() != null) {
             CarModel car = getFirstLeavingCar();
-            // TODO temporarily mabye. Even the parkingpassholders get this field set to true because it then skips the car on the next loop
+            // TODO temporarily maybe. Even the parkingpassholders get this field set to true because it then skips the car on the next loop
             car.setIsPaying(true);
             if (car.getIsParkingPassHolder()) {
                 // If the first Leaving car is a parkingPassHolder then remove the car and add them to
