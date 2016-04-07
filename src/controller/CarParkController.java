@@ -44,7 +44,7 @@ public class CarParkController extends AbstractController implements ActionListe
         //add(resetButton);
 
         speedSlider = new JSlider(SwingConstants.HORIZONTAL);
-        speedSlider.setMajorTickSpacing(1);
+        speedSlider.setMajorTickSpacing(5);
         speedSlider.addChangeListener(this);
         add(speedSlider);
 
@@ -67,7 +67,6 @@ public class CarParkController extends AbstractController implements ActionListe
         JSlider source = (JSlider)e.getSource();
         if (!source.getValueIsAdjusting()) {
             carParkModel.setTickPause(100 - source.getValue());
-            System.out.print(100 - source.getValue());
         }
     }
 }
