@@ -15,6 +15,19 @@ public class CarParkController extends AbstractController {
     public CarParkController(CarParkModel carParkModel) {
         super(carParkModel);
 
+        JLabel textRegular = new JLabel("NORMAL");
+        JLabel textParking = new JLabel("PASSHOLDER");
+        JLabel textBadParking = new JLabel("BAD PARKER");
+        JLabel textReservation = new JLabel("RESERVATION");
+        textRegular.setForeground(Color.red);
+        textParking.setForeground(Color.blue);
+        textBadParking.setForeground(Color.green);
+        textReservation.setForeground(Color.magenta);
+        add(textRegular);
+        add(textParking);
+        add(textBadParking);
+        add(textReservation);
+
         JButton startButton = new JButton("Start"); // Create Button
         startButton.addActionListener(e -> carParkModel.start()); // Add Listener
         add(startButton); // Add to JPanel
