@@ -36,6 +36,6 @@ public class GraphView extends AbstractView {
         int currentAmount = carParkModel.getAmountOfCarsInThePark(); //get the current amount of cars in the park
         //System.out.println(currentAmount);
         scores.add((double) currentAmount); //y value added with x+1
-
+        mainPanel.repaint(); //repaint so it displays realtime
     }
 }
