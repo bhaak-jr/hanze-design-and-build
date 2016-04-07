@@ -59,10 +59,10 @@ public class Simulator {
         jp3.add(ctrl2, BorderLayout.NORTH); //add simController to jp3 (buttons)
         jp3.add(pieView, BorderLayout.CENTER); //add pieView to jp3 (view)
 
-        screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jp4.add(ctrl3, BorderLayout.NORTH); //add simController to jp4 (buttons)
         jp4.add(graphView, BorderLayout.CENTER); //add graphView to jp4 (view)
 
+        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.setVisible(true);
 
         carParkModel.notifyViews();
