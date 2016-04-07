@@ -44,7 +44,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
     }
 
     public void start() {
-        if(!run) {
+        if (!run) {
             new Thread(this).start();
         }
     }
@@ -56,15 +56,15 @@ public class CarParkModel extends AbstractModel implements Runnable {
     @Override
     public void run() {
         run = true;
-        while(run) {
+        while (run) {
             tick();
         }
     }
 
     // Dirty overload
     public void run(int numberOfSteps) {
-        if(!run) {
-            new Thread( () -> {
+        if (!run) {
+            new Thread(() -> {
                 for (int i = 0; i < numberOfSteps; i++) {
                     tick();
                 }
@@ -107,7 +107,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // Calculate the number of cars that arrive this minute/current tick()
         double standardDeviation = averageNumberOfCarsPerHour * 0.1;
         double numberOfCarsPerHour = averageNumberOfCarsPerHour + random.nextGaussian() * standardDeviation;
-        int numberOfCarsPerMinute = (int)Math.round(numberOfCarsPerHour / 60);
+        int numberOfCarsPerMinute = (int) Math.round(numberOfCarsPerHour / 60);
 
         // Add the cars to the back of the queue.
         // Lets say that the average numberOfCarsPerMinute is 9. That means that in it's current iteration/tick
@@ -291,5 +291,37 @@ public class CarParkModel extends AbstractModel implements Runnable {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Get the amount of current spots free (empty locations)
+     *
+     * @return int Free spots
+     */
+    public int getFreeLocationAmount() {
+        int freeLocationAmount = 0;
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    LocationModel location = new LocationModel(floor, row, place);
+                    CarModel car = getCarAt(location);
+                    if (car == null) {
+                        freeLocationAmount++;
+                    }
+                }
+            }
+        }
+        return freeLocationAmount;
+    }
+
+    /**
+     * Get the amount of current spots free (empty locations)
+     *
+     * @return int Free spots
+     */
+    public int getAmountOfCarsInThePark() {
+        int totalSpace = (numberOfFloors * numberOfRows * numberOfPlaces);
+        int amountOfCars = (totalSpace - getFreeLocationAmount());
+        return amountOfCars;
     }
 }

@@ -23,6 +23,7 @@ public class Simulator {
         CarParkController simController = new CarParkController(carParkModel);
         AbstractView carParkView = new CarParkView(carParkModel);
         AbstractView textView = new TextView(carParkModel);
+        AbstractView pieView = new PieView(carParkModel);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
         screen.setSize(1000, 500); // set size of the frame
@@ -31,14 +32,20 @@ public class Simulator {
         //Create a panel for each tab
         JPanel jp1 = new JPanel(new BorderLayout());// This will create the first tab
         JPanel jp2 = new JPanel(new BorderLayout());// This will create the second tab
+        JPanel jp3 = new JPanel(new BorderLayout());// This will create the second tab
+
 
         //Add tabs
         jtp.addTab("CarParkView", jp1);
         jtp.addTab("TextView", jp2);
+        jtp.addTab("PieView", jp3);
 
         jp1.add(simController, BorderLayout.NORTH); //add simController to jp1 (buttons)
         jp1.add(carParkView, BorderLayout.CENTER); //add carParkView to jp1 (view)
         jp2.add(textView, BorderLayout.CENTER); //add carParkView to jp2 (view)
+        //jp2.add(simController, BorderLayout.NORTH); //add simController to jp2 (buttons) @bug only shows on 1tab
+        jp3.add(pieView, BorderLayout.CENTER); //add pieView to jp3 (view)
+        //jp3.add(simController, BorderLayout.NORTH); //add simController to jp3 (buttons) @bug only shows on 1tab
 
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         screen.setVisible(true);
