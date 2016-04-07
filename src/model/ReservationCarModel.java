@@ -5,14 +5,28 @@ package src.model;
  */
 public class ReservationCarModel extends CarModel {
 
-    private LocationModel location;
+    private LocationModel reservedLocation;
 
     public ReservationCarModel(int floor, int row, int place) {
-        location = new LocationModel(floor, row, place);
+        reservedLocation = new LocationModel(floor, row, place);
     }
 
-    public LocationModel getReservationSpot() {
-        return location;
+    public int getReservationFloor() {
+        return reservedLocation.getFloor();
     }
+
+    public int getReservationRow() {
+        return reservedLocation.getRow();
+    }
+
+    public int getReservationPlace() {
+        return reservedLocation.getPlace();
+    }
+
+    public LocationModel getReservedLocationModel() {
+        return reservedLocation;
+    }
+
+
 
 }

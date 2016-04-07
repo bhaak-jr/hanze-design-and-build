@@ -1,6 +1,7 @@
 package src.model;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -136,11 +137,19 @@ public class CarParkModel extends AbstractModel implements Runnable {
             if (car == null) {
                 break;
             }
+            if (car instanceof ReservationCarModel) {
+                ReservationCarModel reservationCar = (ReservationCarModel) car;
+                LocationModel reservedLocation = getFirstReservedLocation(reservationCar);
+                setCarAt(reservedLocation, car);
+                int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
+                car.setMinutesLeft(stayMinutes);
+                continue;
+            }
             // Find a space for this car.
             LocationModel freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
                 setCarAt(freeLocation, car);
-                if(car.getIsBadParker()) {
+                if(car.getIsBadParker()) { // TODO Generates 2 different times so 1 car leaves before the other
                     LocationModel secondFreeLocation = getFirstFreeLocation();
                     setCarAt(secondFreeLocation, car);
                 }
@@ -168,7 +177,6 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // paymentCarQueue
         while (getFirstLeavingCar() != null) {
             CarModel car = getFirstLeavingCar();
-            // TODO temporarily maybe. Even the parkingpassholders get this field set to true because it then skips the car on the next loop
             car.setIsPaying(true);
             if (car.getIsParkingPassHolder()) {
                 // If the first Leaving car is a parkingPassHolder then remove the car and add them to
@@ -329,4 +337,66 @@ public class CarParkModel extends AbstractModel implements Runnable {
         int amountOfCars = (totalSpace - getFreeLocationAmount());
         return amountOfCars;
     }
+
+    /**
+     * TODO Check this.
+     * Might be a little bit dirty because I used a concrete class.
+     * I did this mainly because the school assignment says I had to make a new reservation customer/car class.
+     * @param   car
+     * @return  LocationModel
+     */
+    public LocationModel getFirstReservedLocation(ReservationCarModel car) {
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    if (floor == car.getReservationFloor() && row == car.getReservationRow() && place == car.getReservationPlace()) {
+                        return car.getReservedLocationModel();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public void reserve() {
+        JFrame reserveFrame = new JFrame("Reserve a spot!");
+        reserveFrame.setSize(600, 200);
+
+        Container reserveFrameContainer = reserveFrame.getContentPane();
+
+        JTextField floor = new JTextField(5);
+        JTextField row = new JTextField(5);
+        JTextField place = new JTextField(5);
+        JButton reserveButton = new JButton("Reserve!");
+
+        JPanel reservePanel = new JPanel();
+        reservePanel.add(new JLabel("Floor"));
+        reservePanel.add(floor);
+        reservePanel.add(new JLabel("Row"));
+        reservePanel.add(row);
+        reservePanel.add(new JLabel("Place"));
+        reservePanel.add(place);
+        reservePanel.add(reserveButton);
+
+        reserveButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                try {
+                    int floorNumber = Integer.parseInt(floor.getText()) - 1;
+                    int rowNumber = Integer.parseInt(row.getText()) - 1;
+                    int placeNumber = Integer.parseInt(place.getText()) - 1;
+                    entranceCarQueue.addCar(new ReservationCarModel(floorNumber, rowNumber, placeNumber));
+                    JOptionPane.showMessageDialog(reserveFrame, "This car has reserved it's spot. Please add another car or press start.");
+                } catch(NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(reserveFrame, "Please enter correct data");
+                }
+
+            }
+        });
+        reserveFrameContainer.add(reservePanel);
+
+        reserveFrame.pack();
+        reserveFrame.setVisible(true);
+    }
+
 }

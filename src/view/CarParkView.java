@@ -66,7 +66,7 @@ public class CarParkView extends AbstractView {
                     } else if(car != null && car.getIsBadParker()) {
                         color = Color.green;
                     } else if(car != null && car instanceof ReservationCarModel) {
-                        color = Color.magenta;
+                        color = Color.orange;
                     }
                     drawPlace(graphics, location, color);
                 }

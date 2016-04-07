@@ -22,11 +22,15 @@ public class CarParkController extends AbstractController {
         textRegular.setForeground(Color.red);
         textParking.setForeground(Color.blue);
         textBadParking.setForeground(Color.green);
-        textReservation.setForeground(Color.magenta);
+        textReservation.setForeground(Color.orange);
         add(textRegular);
         add(textParking);
         add(textBadParking);
         add(textReservation);
+
+        JButton reserveButton = new JButton("Reserve spot"); // Create Button
+        reserveButton.addActionListener(e -> carParkModel.reserve()); // Add Listener
+        add(reserveButton); // Add to JPanel
 
         JButton startButton = new JButton("Start"); // Create Button
         startButton.addActionListener(e -> carParkModel.start()); // Add Listener
