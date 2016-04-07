@@ -2,71 +2,49 @@ package src.controller;
 
 import javax.swing.*;
 import src.model.*;
-import java.awt.event.*;
-import javax.swing.event.*;
 
 /**
  * Controller subclass.
  * Created by Bas Haaksema on 05-Apr-16.
  */
-public class CarParkController extends AbstractController implements ActionListener, ChangeListener {
-
-    private JButton startButton;
-    private JButton stopButton;
-    private JButton plusOneButton;
-    private JButton plusHundredButton;
-    private JButton resetButton;
-    private JSlider speedSlider;
+public class CarParkController extends AbstractController {
 
     public CarParkController(CarParkModel carParkModel) {
         super(carParkModel);
 
-        setSize(450, 50);
-
-        startButton = new JButton("Start");
-        startButton.addActionListener(this);
+        JButton startButton = new JButton("Start");
+        startButton.addActionListener(e -> carParkModel.start());
         add(startButton);
 
-        stopButton = new JButton("Stop");
-        stopButton.addActionListener(this);
+        JButton stopButton = new JButton("Stop");
+        stopButton.addActionListener(e -> carParkModel.stop());
         add(stopButton);
 
-        plusOneButton = new JButton("+1 tick");
-        plusOneButton.addActionListener(this);
+        JButton plusOneButton = new JButton("+1 tick");
+        plusOneButton.addActionListener(e -> carParkModel.run(1));
         add(plusOneButton);
 
-        plusHundredButton = new JButton("+100 ticks");
-        plusHundredButton.addActionListener(this);
+        JButton plusHundredButton = new JButton("+100 ticks");
+        plusHundredButton.addActionListener(e -> carParkModel.run(100));
         //add(plusHundredButton);
 
-        resetButton = new JButton("Reset");
-        resetButton.addActionListener(this);
+        JButton resetButton = new JButton("Reset");
+        resetButton.addActionListener(e -> {
+            // TODO Implement reset functionality
+            // carParkModel.reset();
+        });
         //add(resetButton);
 
-        speedSlider = new JSlider(SwingConstants.HORIZONTAL);
+        JSlider speedSlider = new JSlider(SwingConstants.HORIZONTAL);
         speedSlider.setMajorTickSpacing(5);
-        speedSlider.addChangeListener(this);
+        speedSlider.addChangeListener(e -> {
+            JSlider source = (JSlider)e.getSource();
+            if (!source.getValueIsAdjusting()) {
+                carParkModel.setTickPause(100 - source.getValue());
+            }
+        });
         add(speedSlider);
 
         setVisible(true);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == startButton)       carParkModel.start();
-        if (e.getSource() == stopButton)        carParkModel.stop();
-        if (e.getSource() == plusOneButton)     carParkModel.run(1);
-        if (e.getSource() == plusHundredButton) carParkModel.run(100);
-        if (e.getSource() == resetButton){
-            carParkModel.notifyViews();
-            // TODO Implement reset functionality
-            // carParkModel.reset();
-        }
-    }
-
-    public void stateChanged(ChangeEvent e) {
-        JSlider source = (JSlider)e.getSource();
-        if (!source.getValueIsAdjusting()) {
-            carParkModel.setTickPause(100 - source.getValue());
-        }
     }
 }
