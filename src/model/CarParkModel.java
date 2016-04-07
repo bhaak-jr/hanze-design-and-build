@@ -18,12 +18,12 @@ public class CarParkModel extends AbstractModel implements Runnable {
 
     private int tickPause = 50;
 
-    int weekDayArrivals = 50;           // Average number of cars per hour
-    int weekendArrivals = 90;           // Average number of cars per hour
+    private int weekDayArrivals = 50;           // Average number of cars per hour
+    private int weekendArrivals = 90;           // Average number of cars per hour
 
-    int enterSpeed = 3;                 // Number of cars that can enter per minute/iteration
-    int paymentSpeed = 10;              // Number of cars that can pay per minute/iteration
-    int exitSpeed = 9;                  // Number of cars that can exit/leave per minute/iteration
+    private int enterSpeed = 3;                 // Number of cars that can enter per minute/iteration
+    private int paymentSpeed = 10;              // Number of cars that can pay per minute/iteration
+    private int exitSpeed = 9;                  // Number of cars that can exit/leave per minute/iteration
 
     private int numberOfFloors;
     private int numberOfRows;
