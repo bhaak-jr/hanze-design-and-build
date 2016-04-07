@@ -6,6 +6,8 @@ public abstract class CarModel {
     private int minutesLeft;
     private boolean isPaying;
     private boolean isParkingPassHolder;
+    private boolean isBadParker;
+
     /**
      * Constructor for objects of class CarModel
      */
@@ -37,12 +39,22 @@ public abstract class CarModel {
         this.isPaying = isPaying;
     }
 
-    boolean getIsParkingPassHolder() {
+    public boolean getIsParkingPassHolder() {
         return isParkingPassHolder;
     }
 
     void setIsParkingPassHolder(boolean bool) {
         this.isParkingPassHolder = bool;
+    }
+
+    public void setIsBadParker(int probability) {
+        if(probability < 10) {
+            isBadParker = true;
+        }
+    }
+
+    public boolean getIsBadParker() {
+        return isBadParker;
     }
 
     /**

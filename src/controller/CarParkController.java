@@ -3,6 +3,8 @@ package src.controller;
 import javax.swing.*;
 import src.model.*;
 
+import java.awt.*;
+
 /**
  * Controller subclass.
  * Created by Bas Haaksema on 05-Apr-16.
