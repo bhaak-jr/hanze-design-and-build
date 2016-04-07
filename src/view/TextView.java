@@ -49,13 +49,13 @@ public class TextView extends AbstractView {
 
 
         JPanel amountOfFloorsInThePark = new JPanel(); //subpanel
-        amountOfFloorsInThePark.add(amountOfFloorsInTheParkLabel);
+        amountOfFloorsInThePark.add(amountOfFloorsInTheParkLabel); //@bug somehow doesn't show this label
         amountOfFloorsInThePark.add(amountOfFloorsInTheParkValue);
         add(amountOfFloorsInThePark); //this panel
         amountOfFloorsInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
         JPanel amountOfPlacesInThePark = new JPanel();
-        amountOfPlacesInThePark.add(amountOfPlacesInTheParkLabel);
+        amountOfPlacesInThePark.add(amountOfPlacesInTheParkLabel); //@bug somehow doesn't show this label
         amountOfPlacesInThePark.add(amountOfPlacesInTheParkValue);
         add(amountOfPlacesInThePark);
         amountOfPlacesInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
