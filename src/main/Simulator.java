@@ -43,9 +43,9 @@ public class Simulator {
         jp1.add(simController, BorderLayout.NORTH); //add simController to jp1 (buttons)
         jp1.add(carParkView, BorderLayout.CENTER); //add carParkView to jp1 (view)
         jp2.add(textView, BorderLayout.CENTER); //add carParkView to jp2 (view)
-        jp2.add(simController, BorderLayout.NORTH); //add simController to jp2 (buttons)
+        //jp2.add(simController, BorderLayout.NORTH); //add simController to jp2 (buttons) @bug only shows on 1tab
         jp3.add(pieView, BorderLayout.CENTER); //add pieView to jp3 (view)
-        jp3.add(simController, BorderLayout.NORTH); //add simController to jp3 (buttons)
+        //jp3.add(simController, BorderLayout.NORTH); //add simController to jp3 (buttons) @bug only shows on 1tab
 
         screen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         screen.setVisible(true);
