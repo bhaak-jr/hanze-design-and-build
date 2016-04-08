@@ -1,25 +1,25 @@
 package src.model;
 
-public abstract class CarModel {
+public abstract class Car {
 
-    private LocationModel location;
+    private Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean isParkingPassHolder;
     private boolean isBadParker;
 
     /**
-     * Constructor for objects of class CarModel
+     * Constructor for objects of class Car
      */
-    CarModel() {
+    Car() {
 
     }
 
-    LocationModel getLocation() {
+    Location getLocation() {
         return location;
     }
 
-    void setLocation(LocationModel location) {
+    void setLocation(Location location) {
         this.location = location;
     }
 

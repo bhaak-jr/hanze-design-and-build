@@ -3,12 +3,12 @@ package src.model;
 /**
  * Created by Danny on 7-4-2016.
  */
-public class ReservationCarModel extends CarModel {
+public class ReservationCar extends Car {
 
-    private LocationModel reservedLocation;
+    private Location reservedLocation;
 
-    public ReservationCarModel(int floor, int row, int place) {
-        reservedLocation = new LocationModel(floor, row, place);
+    public ReservationCar(int floor, int row, int place) {
+        reservedLocation = new Location(floor, row, place);
     }
 
     public int getReservationFloor() {
@@ -23,7 +23,7 @@ public class ReservationCarModel extends CarModel {
         return reservedLocation.getPlace();
     }
 
-    public LocationModel getReservedLocationModel() {
+    public Location getReservedLocationModel() {
         return reservedLocation;
     }
 
