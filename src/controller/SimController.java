@@ -10,9 +10,9 @@ import java.awt.*;
  * Controller subclass.
  * Created by Bas Haaksema on 05-Apr-16.
  */
-public class CarParkController extends AbstractController {
+public class SimController extends AbstractController {
 
-    public CarParkController(CarParkModel carParkModel) {
+    public SimController(CarParkModel carParkModel) {
         super(carParkModel);
 
         JLabel textRegular = new JLabel("NORMAL");
