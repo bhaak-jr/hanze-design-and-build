@@ -15,13 +15,10 @@ public class TextView extends AbstractView {
     private JLabel amountOfCarsInTheParkValue = new JLabel();
 
     private JLabel amountOfRowsInTheParkValue = new JLabel();
-    private JLabel amountOfRowsInTheParkLabel = new JLabel("The carpark has: ");
 
     private JLabel amountOfFloorsInTheParkValue = new JLabel();
-    private JLabel amountOfFloorsInTheParkLabel = new JLabel("The carpark has 2: ");
 
     private JLabel amountOfPlacesInTheParkValue = new JLabel();
-    private JLabel amountOfPlacesInTheParkLabel = new JLabel("The carpark has: ");
 
 
 
@@ -42,20 +39,20 @@ public class TextView extends AbstractView {
 
 
         JPanel amountOfRowsInThepark = new JPanel(); //subpanel
-        amountOfRowsInThepark.add(amountOfRowsInTheParkLabel);
+        amountOfRowsInThepark.add(new JLabel("The carpark has: "));
         amountOfRowsInThepark.add(amountOfRowsInTheParkValue);
         add(amountOfRowsInThepark); //this panel
         amountOfRowsInThepark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
 
         JPanel amountOfFloorsInThePark = new JPanel(); //subpanel
-        amountOfFloorsInThePark.add(amountOfFloorsInTheParkLabel); //@bug somehow doesn't show this label
+        amountOfFloorsInThePark.add(new JLabel("The carpark has: ")); //@bug somehow doesn't show this label
         amountOfFloorsInThePark.add(amountOfFloorsInTheParkValue);
         add(amountOfFloorsInThePark); //this panel
         amountOfFloorsInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
         JPanel amountOfPlacesInThePark = new JPanel();
-        amountOfPlacesInThePark.add(amountOfPlacesInTheParkLabel); //@bug somehow doesn't show this label
+        amountOfPlacesInThePark.add(new JLabel("The carpark has: ")); //@bug somehow doesn't show this label
         amountOfPlacesInThePark.add(amountOfPlacesInTheParkValue);
         add(amountOfPlacesInThePark);
         amountOfPlacesInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
@@ -72,7 +69,7 @@ public class TextView extends AbstractView {
     public void updateView() {
         amountOfCarsInTheParkValue.setText(String.valueOf(carParkModel.getAmountOfCarsInThePark())); //get the string value of the integer amountOfCarsInThePark
         amountOfRowsInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfRows()) + " rows");
-        amountOfFloorsInTheParkLabel.setText(String.valueOf(carParkModel.getNumberOfFloors()) + " floors");
-        amountOfPlacesInTheParkLabel.setText(String.valueOf(carParkModel.getNumberOfPlaces()) + " places");
+        amountOfFloorsInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfFloors()) + " floors");
+        amountOfPlacesInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfPlaces()) + " places");
     }
 }
