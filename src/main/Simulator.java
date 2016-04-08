@@ -34,24 +34,29 @@ public class Simulator {
         JPanel jp2 = new JPanel(new BorderLayout());
         JPanel jp3 = new JPanel(new BorderLayout());
         JPanel jp4 = new JPanel(new BorderLayout());
+        JPanel jp5 = new JPanel(new BorderLayout());
 
         // Add tabs
         jtp.addTab("CarParkView", jp1);
         jtp.addTab("TextView", jp2);
         jtp.addTab("PieView", jp3);
         jtp.addTab("GraphView", jp4);
+        jtp.addTab("TextViewQueue", jp5);
 
         // Create views
         AbstractView carParkView = new CarParkView(carParkModel);
         AbstractView textView = new TextView(carParkModel);
         AbstractView pieView = new PieView(carParkModel);
         AbstractView graphView = new GraphView(carParkModel);
+        AbstractView textViewQueue = new TextViewQueue(carParkModel);
+
 
         // Add views to tabs
         jp1.add(carParkView, BorderLayout.CENTER);
         jp2.add(textView, BorderLayout.CENTER);
         jp3.add(pieView, BorderLayout.CENTER);
         jp4.add(graphView, BorderLayout.CENTER);
+        jp5.add(textViewQueue, BorderLayout.CENTER);
 
         screen.setVisible(true);
         carParkModel.notifyViews();

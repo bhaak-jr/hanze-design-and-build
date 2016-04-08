@@ -399,4 +399,27 @@ public class CarParkModel extends AbstractModel implements Runnable {
         reserveFrame.setVisible(true);
     }
 
+    /**
+     * Get the size of the entrance car queue
+     * @return int Size of the entrance car queue
+     */
+    public int getEntranceCarQueueSize(){
+        return entranceCarQueue.getSize();
+    }
+
+    /**
+     * Get the size of the payment car queue
+     * @return int Size of the entrance car queue
+     */
+    public int getPaymentCarQueueSize(){
+        return paymentCarQueue.getSize();
+    }
+
+    /**
+     * Get the size of the exit car queue
+     * @return int Size of the exit car queue
+     */
+    public int getExitCarQueueSize(){
+        return exitCarQueue.getSize();
+    }
 }

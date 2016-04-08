@@ -14,4 +14,12 @@ class CarQueueModel {
         return queue.poll();
     }
 
+    /*
+     * Get the size of a queue
+     * @return int The size of the queue
+     */
+    public int getSize(){
+        return queue.size();
+    }
+
 }
