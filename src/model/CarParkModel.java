@@ -385,10 +385,16 @@ public class CarParkModel extends AbstractModel implements Runnable {
                     int floorNumber = Integer.parseInt(floor.getText()) - 1;
                     int rowNumber = Integer.parseInt(row.getText()) - 1;
                     int placeNumber = Integer.parseInt(place.getText()) - 1;
-                    entranceCarQueue.addCar(new ReservationCar(floorNumber, rowNumber, placeNumber));
-                    JOptionPane.showMessageDialog(reserveFrame, "This car has reserved it's spot. Please add another car or press start.");
+                    if(floorNumber < numberOfFloors && rowNumber < numberOfRows && placeNumber < numberOfPlaces) {
+                        entranceCarQueue.addCar(new ReservationCar(floorNumber, rowNumber, placeNumber));
+                        JOptionPane.showMessageDialog(reserveFrame, "This car has reserved it's spot. Please add another car or press start.");
+                    } else {
+                        throw new NullPointerException();
+                    }
                 } catch(NumberFormatException ex) {
                     JOptionPane.showMessageDialog(reserveFrame, "Please enter correct data");
+                } catch(NullPointerException ex) {
+                    JOptionPane.showMessageDialog(reserveFrame, "Place doesn't exist");
                 }
 
             }
