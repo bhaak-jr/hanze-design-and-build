@@ -3,6 +3,8 @@ package src.model;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import java.awt.event.*;
+
 
 /**
  * Created by Bas Haaksema on 05-Apr-16.
@@ -31,6 +33,8 @@ public class CarParkModel extends AbstractModel implements Runnable {
     private int numberOfRows;
     private int numberOfPlaces;
     private Car[][][] cars;
+
+    private boolean reservationCarPassHolder = false; //@dirty pease think of a better method currently used in the reserve method
 
     public CarParkModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         entranceCarQueue = new CarQueue();
@@ -367,6 +371,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         JTextField floor = new JTextField(5);
         JTextField row = new JTextField(5);
         JTextField place = new JTextField(5);
+        JCheckBox parkpass = new JCheckBox();
         JButton reserveButton = new JButton("Reserve!");
 
         JPanel reservePanel = new JPanel();
@@ -376,8 +381,22 @@ public class CarParkModel extends AbstractModel implements Runnable {
         reservePanel.add(row);
         reservePanel.add(new JLabel("Place"));
         reservePanel.add(place);
+        reservePanel.add(new JLabel("Is this a parking pass holder(check box)?"));
+        reservePanel.add(parkpass);
         reservePanel.add(reserveButton);
 
+
+
+        parkpass.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                    reservationCarPassHolder = true;
+                } else {//checkbox has been deselected
+                    reservationCarPassHolder = false;
+                };
+            }
+        });
         reserveButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -386,7 +405,15 @@ public class CarParkModel extends AbstractModel implements Runnable {
                     int rowNumber = Integer.parseInt(row.getText()) - 1;
                     int placeNumber = Integer.parseInt(place.getText()) - 1;
                     if(floorNumber < numberOfFloors && rowNumber < numberOfRows && placeNumber < numberOfPlaces) {
-                        entranceCarQueue.addCar(new ReservationCar(floorNumber, rowNumber, placeNumber));
+                        if(!reservationCarPassHolder) { //when false, handle it as a normal reservation
+                            entranceCarQueue.addCar(new ReservationCar(floorNumber, rowNumber, placeNumber));
+                            System.out.println(reservationCarPassHolder);
+                        }else{ //add a parkingpasscar
+                            System.out.println(reservationCarPassHolder);
+                            Car car = new ReservationCar(floorNumber, rowNumber, placeNumber);
+                            car.setIsParkingPassHolder(true);
+                            entranceCarQueue.addCar(car);
+                        }
                         JOptionPane.showMessageDialog(reserveFrame, "This car has reserved it's spot. Please add another car or press start.");
                     } else {
                         throw new NullPointerException();
