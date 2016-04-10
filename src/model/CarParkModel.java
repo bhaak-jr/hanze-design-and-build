@@ -407,9 +407,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
                     if(floorNumber < numberOfFloors && rowNumber < numberOfRows && placeNumber < numberOfPlaces) {
                         if(!reservationCarPassHolder) { //when false, handle it as a normal reservation
                             entranceCarQueue.addCar(new ReservationCar(floorNumber, rowNumber, placeNumber));
-                            System.out.println(reservationCarPassHolder);
                         }else{ //add a parkingpasscar
-                            System.out.println(reservationCarPassHolder);
                             Car car = new ReservationCar(floorNumber, rowNumber, placeNumber);
                             car.setIsParkingPassHolder(true);
                             entranceCarQueue.addCar(car);
