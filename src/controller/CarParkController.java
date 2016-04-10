@@ -30,6 +30,8 @@ public class CarParkController extends AbstractController {
         add(textBadParking);
         add(textReservation);
 
+        add(Box.createRigidArea(new Dimension(0,5))); //create spacing between buttons and labels
+
         JButton reserveButton = new JButton("Reserve spot"); // Create Button
         reserveButton.addActionListener(e -> carParkModel.reserve()); // Add Listener
         this.setAlignmentX(Component.LEFT_ALIGNMENT);
