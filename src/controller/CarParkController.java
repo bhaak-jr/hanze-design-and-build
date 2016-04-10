@@ -13,6 +13,7 @@ public class CarParkController extends AbstractController {
     public CarParkController(CarParkModel carParkModel) {
         super(carParkModel);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //vertical layout
+        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
         JLabel textRegular = new JLabel("NORMAL");
         JLabel textParking = new JLabel("PASSHOLDER");
