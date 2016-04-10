@@ -3,8 +3,6 @@ package src.view;
 import java.awt.*;
 import src.model.*;
 
-import javax.swing.*;
-
 /**
  * View subclass.
  * Created by Bas Haaksema on 05-Apr-16.
@@ -58,14 +56,14 @@ public class CarParkView extends AbstractView {
         for(int floor = 0; floor < getCarParkModel().getNumberOfFloors(); floor++) {
             for(int row = 0; row < carParkModel.getNumberOfRows(); row++) {
                 for(int place = 0; place < carParkModel.getNumberOfPlaces(); place++) {
-                    LocationModel location = new LocationModel(floor, row, place);
-                    CarModel car = carParkModel.getCarAt(location);
+                    Location location = new Location(floor, row, place);
+                    Car car = carParkModel.getCarAt(location);
                     Color color = car == null ? Color.white : Color.red;
                     if(car != null && car.getIsParkingPassHolder()) {
                         color = Color.blue;
                     } else if(car != null && car.getIsBadParker()) {
                         color = Color.green;
-                    } else if(car != null && car instanceof ReservationCarModel) {
+                    } else if(car != null && car instanceof ReservationCar) {
                         color = Color.orange;
                     }
                     drawPlace(graphics, location, color);
@@ -78,7 +76,7 @@ public class CarParkView extends AbstractView {
     /**
      * Paint a place on this car park view in a given color.
      */
-    private void drawPlace(Graphics graphics, LocationModel location, Color color) {
+    private void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
         graphics.fillRect(
                 location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,

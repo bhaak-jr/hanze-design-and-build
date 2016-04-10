@@ -1,15 +1,15 @@
 package src.model;
 
-public class LocationModel {
+public class Location {
 
     private int floor;
     private int row;
     private int place;
 
     /**
-     * Constructor for objects of class LocationModel
+     * Constructor for objects of class Location
      */
-    public LocationModel(int floor, int row, int place) {
+    public Location(int floor, int row, int place) {
         this.floor = floor;
         this.row = row;
         this.place = place;
@@ -19,8 +19,8 @@ public class LocationModel {
      * Implement content equality.
      */
     public boolean equals(Object obj) {
-        if(obj instanceof LocationModel) {
-            LocationModel other = (LocationModel) obj;
+        if(obj instanceof Location) {
+            Location other = (Location) obj;
             return floor == other.getFloor() && row == other.getRow() && place == other.getPlace();
         }
         else {

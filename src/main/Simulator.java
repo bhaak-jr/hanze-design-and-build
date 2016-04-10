@@ -23,7 +23,7 @@ public class Simulator {
         screen.setSize(1024, 512); // set size of the frame
 
         CarParkModel carParkModel = new CarParkModel(3, 6, 30);
-        CarParkController controller = new CarParkController(carParkModel);
+        SimController controller = new SimController(carParkModel);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
         screen.getContentPane().add(jtp, BorderLayout.CENTER); //add the tabbed pane

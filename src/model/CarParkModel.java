@@ -10,9 +10,9 @@ import java.util.Random;
 public class CarParkModel extends AbstractModel implements Runnable {
     private boolean run;
 
-    private CarQueueModel entranceCarQueue;  // A queue for the cars to enter
-    private CarQueueModel paymentCarQueue;   // A queue for the cars to spend their dolla dolla bill y'all
-    private CarQueueModel exitCarQueue;      // A queue for the cars to exit
+    private CarQueue entranceCarQueue;  // A queue for the cars to enter
+    private CarQueue paymentCarQueue;   // A queue for the cars to spend their dolla dolla bill y'all
+    private CarQueue exitCarQueue;      // A queue for the cars to exit
 
     private int day = 0;                // Initial value for the current day
     private int hour = 0;               // Initial value for the current hour
@@ -30,17 +30,17 @@ public class CarParkModel extends AbstractModel implements Runnable {
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
-    private CarModel[][][] cars;
+    private Car[][][] cars;
 
     public CarParkModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
-        entranceCarQueue = new CarQueueModel();
-        paymentCarQueue = new CarQueueModel();
-        exitCarQueue = new CarQueueModel();
+        entranceCarQueue = new CarQueue();
+        paymentCarQueue = new CarQueue();
+        exitCarQueue = new CarQueue();
 
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
-        cars = new CarModel[numberOfFloors][numberOfRows][numberOfPlaces];
+        cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
 
         notifyViews();
     }
@@ -115,7 +115,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // Lets say that the average numberOfCarsPerMinute is 9. That means that in it's current iteration/tick
         // we create 9 new AdHocCars() and we all add them to our entranceCarQueue
         for (int i = 0; i < numberOfCarsPerMinute; i++) {
-            CarModel car = new AdHocCarModel();
+            Car car = new AdHocCar();
 
             // Generate a random boolean and add it to the car field
             boolean randomBool = new Random().nextBoolean();
@@ -133,24 +133,24 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // enter the garage per minute/tick/iteration. So it loops 3 times and then assigns the first 3 cars to their reserved spot.
         // All cars drive immediately to the first free spot at the moment. The car then gets assigned their stayMinutes.
         for (int i = 0; i < enterSpeed; i++) {
-            CarModel car = entranceCarQueue.removeCar();
+            Car car = entranceCarQueue.removeCar();
             if (car == null) {
                 break;
             }
-            if (car instanceof ReservationCarModel) {
-                ReservationCarModel reservationCar = (ReservationCarModel) car;
-                LocationModel reservedLocation = getFirstReservedLocation(reservationCar);
+            if (car instanceof ReservationCar) {
+                ReservationCar reservationCar = (ReservationCar) car;
+                Location reservedLocation = getFirstReservedLocation(reservationCar);
                 setCarAt(reservedLocation, car);
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
                 continue;
             }
             // Find a space for this car.
-            LocationModel freeLocation = getFirstFreeLocation();
+            Location freeLocation = getFirstFreeLocation();
             if (freeLocation != null) {
                 setCarAt(freeLocation, car);
                 if(car.getIsBadParker()) { // TODO Generates 2 different times so 1 car leaves before the other
-                    LocationModel secondFreeLocation = getFirstFreeLocation();
+                    Location secondFreeLocation = getFirstFreeLocation();
                     setCarAt(secondFreeLocation, car);
                 }
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
@@ -163,8 +163,8 @@ public class CarParkModel extends AbstractModel implements Runnable {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    LocationModel location = new LocationModel(floor, row, place);
-                    CarModel car = getCarAt(location);
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
                     if (car != null) {
                         car.tick();
                     }
@@ -176,7 +176,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // The while loop stops when all current spots are not yet ready to leave. In every loop a car is sent to the
         // paymentCarQueue
         while (getFirstLeavingCar() != null) {
-            CarModel car = getFirstLeavingCar();
+            Car car = getFirstLeavingCar();
             car.setIsPaying(true);
             if (car.getIsParkingPassHolder()) {
                 // If the first Leaving car is a parkingPassHolder then remove the car and add them to
@@ -191,7 +191,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // Remove cars from the paymentCarQueue queue and add them to the exitCarQueue.
         // The amount of payments are limited by the integer in the paymentSpeed field just like entranceCarQueue
         for (int i = 0; i < paymentSpeed; i++) {
-            CarModel car = paymentCarQueue.removeCar();
+            Car car = paymentCarQueue.removeCar();
             if (car == null) {
                 break;
             }
@@ -202,7 +202,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
 
         // Remove cars from the garage completely, again, limited by the amount of the exitSpeed field.
         for (int i = 0; i < exitSpeed; i++) {
-            CarModel car = exitCarQueue.removeCar();
+            Car car = exitCarQueue.removeCar();
             if (car == null) {
                 break;
             }
@@ -234,18 +234,18 @@ public class CarParkModel extends AbstractModel implements Runnable {
         return numberOfPlaces;
     }
 
-    public CarModel getCarAt(LocationModel location) {
+    public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
 
-    private boolean setCarAt(LocationModel location, CarModel car) {
+    private boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
         }
-        CarModel oldCar = getCarAt(location);
+        Car oldCar = getCarAt(location);
         if (oldCar == null) {
             cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
             car.setLocation(location);
@@ -254,11 +254,11 @@ public class CarParkModel extends AbstractModel implements Runnable {
         return false;
     }
 
-    private CarModel removeCarAt(LocationModel location) {
+    private Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
-        CarModel car = getCarAt(location);
+        Car car = getCarAt(location);
         if (car == null) {
             return null;
         }
@@ -267,11 +267,11 @@ public class CarParkModel extends AbstractModel implements Runnable {
         return car;
     }
 
-    private LocationModel getFirstFreeLocation() {
+    private Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    LocationModel location = new LocationModel(floor, row, place);
+                    Location location = new Location(floor, row, place);
                     if (getCarAt(location) == null) {
                         return location;
                     }
@@ -281,12 +281,12 @@ public class CarParkModel extends AbstractModel implements Runnable {
         return null;
     }
 
-    private CarModel getFirstLeavingCar() {
+    private Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    LocationModel location = new LocationModel(floor, row, place);
-                    CarModel car = getCarAt(location);
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
                     if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
                         return car;
                     }
@@ -296,7 +296,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         return null;
     }
 
-    private boolean locationIsValid(LocationModel location) {
+    private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
         int place = location.getPlace();
@@ -316,8 +316,8 @@ public class CarParkModel extends AbstractModel implements Runnable {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    LocationModel location = new LocationModel(floor, row, place);
-                    CarModel car = getCarAt(location);
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
                     if (car == null) {
                         freeLocationAmount++;
                     }
@@ -343,9 +343,9 @@ public class CarParkModel extends AbstractModel implements Runnable {
      * Might be a little bit dirty because I used a concrete class.
      * I did this mainly because the school assignment says I had to make a new reservation customer/car class.
      * @param   car
-     * @return  LocationModel
+     * @return  Location
      */
-    public LocationModel getFirstReservedLocation(ReservationCarModel car) {
+    public Location getFirstReservedLocation(ReservationCar car) {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -385,10 +385,16 @@ public class CarParkModel extends AbstractModel implements Runnable {
                     int floorNumber = Integer.parseInt(floor.getText()) - 1;
                     int rowNumber = Integer.parseInt(row.getText()) - 1;
                     int placeNumber = Integer.parseInt(place.getText()) - 1;
-                    entranceCarQueue.addCar(new ReservationCarModel(floorNumber, rowNumber, placeNumber));
-                    JOptionPane.showMessageDialog(reserveFrame, "This car has reserved it's spot. Please add another car or press start.");
+                    if(floorNumber < numberOfFloors && rowNumber < numberOfRows && placeNumber < numberOfPlaces) {
+                        entranceCarQueue.addCar(new ReservationCar(floorNumber, rowNumber, placeNumber));
+                        JOptionPane.showMessageDialog(reserveFrame, "This car has reserved it's spot. Please add another car or press start.");
+                    } else {
+                        throw new NullPointerException();
+                    }
                 } catch(NumberFormatException ex) {
                     JOptionPane.showMessageDialog(reserveFrame, "Please enter correct data");
+                } catch(NullPointerException ex) {
+                    JOptionPane.showMessageDialog(reserveFrame, "Place doesn't exist");
                 }
 
             }
