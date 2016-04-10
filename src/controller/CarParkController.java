@@ -24,11 +24,6 @@ public class CarParkController extends AbstractController {
         textBadParking.setForeground(Color.green);
         textReservation.setForeground(Color.orange);
 
-        textRegular.setAlignmentX(Component.CENTER_ALIGNMENT);
-        textParking.setAlignmentX(Component.CENTER_ALIGNMENT);
-        textBadParking.setAlignmentX(Component.CENTER_ALIGNMENT);
-        textRegular.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         add(textRegular);
         add(textParking);
         add(textBadParking);
@@ -36,7 +31,7 @@ public class CarParkController extends AbstractController {
 
         JButton reserveButton = new JButton("Reserve spot"); // Create Button
         reserveButton.addActionListener(e -> carParkModel.reserve()); // Add Listener
-        reserveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(reserveButton); // Add to JPanel
 
         setVisible(true);
