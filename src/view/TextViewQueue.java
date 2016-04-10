@@ -27,7 +27,7 @@ public class TextViewQueue extends AbstractView {
      * Update the view
      */
     public void updateView(){
-        System.out.println(carParkModel.getEntranceCarQueueSize());
+        //System.out.println(carParkModel.getEntranceCarQueueSize());
         entranceCarQueue.setText(String.valueOf(carParkModel.getEntranceCarQueueSize()));
         paymentCarQueue.setText(String.valueOf(carParkModel.getPaymentCarQueueSize()));
         exitCarQueue.setText(String.valueOf(carParkModel.getExitCarQueueSize()));
