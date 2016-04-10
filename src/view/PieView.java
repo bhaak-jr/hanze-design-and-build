@@ -10,9 +10,12 @@ import javax.swing.*;
 public class PieView extends AbstractView {
     private Dimension size;
     private Image carParkImage;
+    private JLabel amountOfCarsInTheParkValue = new JLabel();
 
     public PieView(CarParkModel carParkModel) {
         super(carParkModel);
+        add(new JLabel("Amount of cars in the park: "));
+        add(amountOfCarsInTheParkValue);
     }
 
     /**
@@ -33,6 +36,13 @@ public class PieView extends AbstractView {
         g.setColor(super.getBackground()); //set the background the same as super
         g.fillRect(0, 0, this.getWidth(), this.getHeight()); //set the width and height to whole panel
         g.setColor(Color.BLUE); //draw it with the color blue
-        g.fillArc(10, 10, 360, 360, 0, arc); //fil the arc
+        g.fillArc(50, 50, 360, 360, 0, arc); //fil the arc
+
+    }
+
+    @Override
+    public void updateView() {
+        super.updateView();
+        amountOfCarsInTheParkValue.setText(String.valueOf(carParkModel.getAmountOfCarsInThePark())); //get the string value of the integer amountOfCarsInThePark
     }
 }
