@@ -20,7 +20,7 @@ public class Simulator {
 
         JFrame screen = new JFrame("Simulator");
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        screen.setSize(1024, 512); // set size of the frame
+        screen.setSize(1100, 512); // set size of the frame
 
         CarParkModel carParkModel = new CarParkModel(3, 6, 30);
         SimController controller = new SimController(carParkModel);
