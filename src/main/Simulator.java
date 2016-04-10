@@ -20,14 +20,17 @@ public class Simulator {
 
         JFrame screen = new JFrame("Simulator");
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        screen.setSize(1100, 512); // set size of the frame
+        screen.setSize(1024, 512); // set size of the frame
 
         CarParkModel carParkModel = new CarParkModel(3, 6, 30);
-        SimController controller = new SimController(carParkModel);
         JTabbedPane jtp = new JTabbedPane(); //new tabbed pane
 
+        // Create Controllers
+        SimController simController = new SimController(carParkModel);
+        CarParkController carParkController = new CarParkController(carParkModel);
+
         screen.getContentPane().add(jtp, BorderLayout.CENTER); //add the tabbed pane
-        screen.getContentPane().add(controller, BorderLayout.SOUTH); //add buttons
+        screen.getContentPane().add(simController, BorderLayout.SOUTH); //add buttons
 
         // Create a panel for each tab
         JPanel jp1 = new JPanel(new BorderLayout());
@@ -50,9 +53,9 @@ public class Simulator {
         AbstractView graphView = new GraphView(carParkModel);
         AbstractView textViewQueue = new TextViewQueue(carParkModel);
 
-
         // Add views to tabs
         jp1.add(carParkView, BorderLayout.CENTER);
+        jp1.add(carParkController, BorderLayout.WEST);
         jp2.add(textView, BorderLayout.CENTER);
         jp3.add(pieView, BorderLayout.CENTER);
         jp4.add(graphView, BorderLayout.CENTER);
