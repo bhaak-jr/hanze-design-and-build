@@ -428,4 +428,37 @@ public class CarParkModel extends AbstractModel implements Runnable {
     public int getExitCarQueueSize(){
         return exitCarQueue.getSize();
     }
+
+    /**
+     * Get the current time
+     * @return String The current time
+     */
+    public String getCurrentTime(){
+        String currentTime = "day: " + day + " hour: " + hour + " minute: " + minute;
+        return currentTime;
+    }
+
+    /**
+     * Get the enter speed
+     * @return int The enterspeed
+     */
+    public int getEnterSpeed(){
+        return enterSpeed;
+    }
+
+    /**
+     * Get the exit speed
+     * @return int The exit speed
+     */
+    public int getExitSpeed(){
+        return exitSpeed;
+    }
+
+    /**
+     * Get the payment speed
+     * @return int The payment speed
+     */
+    public int getPaymentSpeed(){
+        return paymentSpeed;
+    }
 }

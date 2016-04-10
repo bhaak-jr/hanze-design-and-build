@@ -13,12 +13,13 @@ public class TextView extends AbstractView {
 
     private JLabel amountOfCarsInTheParkLabel = new JLabel("Amount of cars in the park: ");
     private JLabel amountOfCarsInTheParkValue = new JLabel();
-
     private JLabel amountOfRowsInTheParkValue = new JLabel();
-
     private JLabel amountOfFloorsInTheParkValue = new JLabel();
-
     private JLabel amountOfPlacesInTheParkValue = new JLabel();
+    private JLabel currentTimeValue = new JLabel();
+    private JLabel exitSpeedValue = new JLabel();
+    private JLabel paymentSpeedValue = new JLabel();
+    private JLabel enterSpeedValue = new JLabel();
 
 
 
@@ -37,6 +38,11 @@ public class TextView extends AbstractView {
         add(amountOfCarsInThePark); //this panel
         amountOfCarsInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
+        JPanel currentTime = new JPanel();
+        currentTime.add(new JLabel("Time values: "));
+        currentTime.add(currentTimeValue);
+        add(currentTime);
+        currentTime.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
         JPanel amountOfRowsInThepark = new JPanel(); //subpanel
         amountOfRowsInThepark.add(new JLabel("The carpark has: "));
@@ -46,16 +52,37 @@ public class TextView extends AbstractView {
 
 
         JPanel amountOfFloorsInThePark = new JPanel(); //subpanel
-        amountOfFloorsInThePark.add(new JLabel("The carpark has: ")); //@bug somehow doesn't show this label
+        amountOfFloorsInThePark.add(new JLabel("The carpark has: "));
         amountOfFloorsInThePark.add(amountOfFloorsInTheParkValue);
         add(amountOfFloorsInThePark); //this panel
         amountOfFloorsInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
         JPanel amountOfPlacesInThePark = new JPanel();
-        amountOfPlacesInThePark.add(new JLabel("The carpark has: ")); //@bug somehow doesn't show this label
+        amountOfPlacesInThePark.add(new JLabel("The carpark has: "));
         amountOfPlacesInThePark.add(amountOfPlacesInTheParkValue);
         add(amountOfPlacesInThePark);
         amountOfPlacesInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
+
+        JPanel enterSpeed = new JPanel();
+        enterSpeed.add(new JLabel("Enter speed: "));
+        enterSpeed.add(enterSpeedValue);
+        add(enterSpeed);
+        enterSpeed.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
+
+        JPanel exitSpeed = new JPanel();
+        exitSpeed.add(new JLabel("Exit speed: "));
+        exitSpeed.add(exitSpeedValue);
+        add(exitSpeed);
+        exitSpeed.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
+
+        JPanel paymentSpeed = new JPanel();
+        paymentSpeed.add(new JLabel("Payment speed: "));
+        paymentSpeed.add(paymentSpeedValue);
+        add(paymentSpeed);
+        paymentSpeed.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
+
+
+
 
         add(Box.createVerticalGlue()); //"fills" the rest of the layout so the spacing won't get weird
 
@@ -71,5 +98,9 @@ public class TextView extends AbstractView {
         amountOfRowsInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfRows()) + " rows");
         amountOfFloorsInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfFloors()) + " floors");
         amountOfPlacesInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfPlaces()) + " places");
+        currentTimeValue.setText(String.valueOf(carParkModel.getCurrentTime()));
+        exitSpeedValue.setText(String.valueOf(carParkModel.getExitSpeed()));
+        enterSpeedValue.setText(String.valueOf(carParkModel.getEnterSpeed()));
+        paymentSpeedValue.setText(String.valueOf(carParkModel.getPaymentSpeed()));
     }
 }
