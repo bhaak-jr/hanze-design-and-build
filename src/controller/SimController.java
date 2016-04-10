@@ -47,7 +47,7 @@ public class SimController extends AbstractController {
         JButton plusHundredButton = new JButton("+100 ticks");
         plusHundredButton.addActionListener(e -> carParkModel.run(100));
         // TODO Secure threading
-        //add(plusHundredButton);
+        add(plusHundredButton);
 
         JButton resetButton = new JButton("Reset");
         resetButton.addActionListener(e -> {
