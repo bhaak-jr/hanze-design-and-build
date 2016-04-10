@@ -29,53 +29,51 @@ public class TextView extends AbstractView {
     public TextView(CarParkModel carParkModel) {
         super(carParkModel);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //vertical layout
-        setBounds(61, 11, 81, 140);
+        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-
-        JPanel amountOfCarsInThePark = new JPanel(); //subpanel
+        JPanel amountOfCarsInThePark = new JPanel(new FlowLayout(FlowLayout.LEFT)); //subpanelJPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         amountOfCarsInThePark.add(amountOfCarsInTheParkLabel);
         amountOfCarsInThePark.add(amountOfCarsInTheParkValue);
         add(amountOfCarsInThePark); //this panel
         amountOfCarsInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-        JPanel currentTime = new JPanel();
+        JPanel currentTime = new JPanel(new FlowLayout(FlowLayout.LEFT));
         currentTime.add(new JLabel("Time values: "));
-        currentTime.add(currentTimeValue);
+        //currentTime.add(currentTimeValue);
         add(currentTime);
         currentTime.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-        JPanel amountOfRowsInThepark = new JPanel(); //subpanel
+        JPanel amountOfRowsInThepark = new JPanel(new FlowLayout(FlowLayout.LEFT)); //subpanel
         amountOfRowsInThepark.add(new JLabel("The carpark has: "));
         amountOfRowsInThepark.add(amountOfRowsInTheParkValue);
         add(amountOfRowsInThepark); //this panel
         amountOfRowsInThepark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-
-        JPanel amountOfFloorsInThePark = new JPanel(); //subpanel
+        JPanel amountOfFloorsInThePark = new JPanel(new FlowLayout(FlowLayout.LEFT)); //subpanel
         amountOfFloorsInThePark.add(new JLabel("The carpark has: "));
         amountOfFloorsInThePark.add(amountOfFloorsInTheParkValue);
         add(amountOfFloorsInThePark); //this panel
         amountOfFloorsInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-        JPanel amountOfPlacesInThePark = new JPanel();
+        JPanel amountOfPlacesInThePark = new JPanel(new FlowLayout(FlowLayout.LEFT));
         amountOfPlacesInThePark.add(new JLabel("The carpark has: "));
         amountOfPlacesInThePark.add(amountOfPlacesInTheParkValue);
         add(amountOfPlacesInThePark);
         amountOfPlacesInThePark.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-        JPanel enterSpeed = new JPanel();
+        JPanel enterSpeed = new JPanel(new FlowLayout(FlowLayout.LEFT));
         enterSpeed.add(new JLabel("Enter speed: "));
         enterSpeed.add(enterSpeedValue);
         add(enterSpeed);
         enterSpeed.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-        JPanel exitSpeed = new JPanel();
+        JPanel exitSpeed = new JPanel(new FlowLayout(FlowLayout.LEFT));
         exitSpeed.add(new JLabel("Exit speed: "));
         exitSpeed.add(exitSpeedValue);
         add(exitSpeed);
         exitSpeed.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-        JPanel paymentSpeed = new JPanel();
+        JPanel paymentSpeed = new JPanel(new FlowLayout(FlowLayout.LEFT));
         paymentSpeed.add(new JLabel("Payment speed: "));
         paymentSpeed.add(paymentSpeedValue);
         add(paymentSpeed);
