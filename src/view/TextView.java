@@ -39,7 +39,7 @@ public class TextView extends AbstractView {
 
         JPanel currentTime = new JPanel(new FlowLayout(FlowLayout.LEFT));
         currentTime.add(new JLabel("Time values: "));
-        //currentTime.add(currentTimeValue);
+        currentTime.add(currentTimeValue);
         add(currentTime);
         currentTime.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
