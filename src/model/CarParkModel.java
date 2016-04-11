@@ -7,6 +7,7 @@ import java.awt.event.*;
 
 
 /**
+ * Model subclass.
  * Created by Bas Haaksema on 05-Apr-16.
  */
 public class CarParkModel extends AbstractModel implements Runnable {
@@ -383,15 +384,10 @@ public class CarParkModel extends AbstractModel implements Runnable {
 
 
 
-        parkpass.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                reservationCarPassHolder = e.getStateChange() == ItemEvent.SELECTED;
-            }
+        parkpass.addItemListener(e ->  {
+            reservationCarPassHolder = e.getStateChange() == ItemEvent.SELECTED;
         });
-        reserveButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+        reserveButton.addActionListener(e ->  {
                 try {
                     int floorNumber = Integer.parseInt(floor.getText()) - 1;
                     int rowNumber = Integer.parseInt(row.getText()) - 1;
@@ -413,8 +409,6 @@ public class CarParkModel extends AbstractModel implements Runnable {
                 } catch(NullPointerException ex) {
                     JOptionPane.showMessageDialog(reserveFrame, "Place doesn't exist");
                 }
-
-            }
         });
         reserveFrameContainer.add(reservePanel);
 
