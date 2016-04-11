@@ -144,7 +144,9 @@ public class CarParkModel extends AbstractModel implements Runnable {
             if (car instanceof ReservationCar) {
                 ReservationCar reservationCar = (ReservationCar) car;
                 Location reservedLocation = getFirstReservedLocation(reservationCar);
-                setCarAt(reservedLocation, car);
+                if(reservedLocation != null) {
+                    setCarAt(reservedLocation, car);
+                }
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
                 continue;
@@ -155,7 +157,9 @@ public class CarParkModel extends AbstractModel implements Runnable {
                 setCarAt(freeLocation, car);
                 if(car.getIsBadParker()) { // TODO Generates 2 different times so 1 car leaves before the other
                     Location secondFreeLocation = getFirstFreeLocation();
-                    setCarAt(secondFreeLocation, car);
+                    if(secondFreeLocation != null) {
+                        setCarAt(secondFreeLocation, car);
+                    }
                 }
                 int stayMinutes = (int) (15 + random.nextFloat() * 10 * 60);
                 car.setMinutesLeft(stayMinutes);
