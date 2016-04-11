@@ -35,6 +35,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
     private Car[][][] cars;
 
     private boolean reservationCarPassHolder = false; //@dirty pease think of a better method currently used in the reserve method
+    private boolean error = true; //set true if you want to display messages
 
     public CarParkModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         entranceCarQueue = new CarQueue();
@@ -97,6 +98,10 @@ public class CarParkModel extends AbstractModel implements Runnable {
         // Reset the day timer if it's over 6 days
         while (day > 6) {
             day -= 7;
+        }
+        if(getFreeLocationAmount()<= (getNumberOfFloors()*getNumberOfPlaces()*getNumberOfRows() / 2) && error){ //when there are only 50 spots left
+            JOptionPane.showMessageDialog(null, "The Carpark only has half of his spots left"); //alert
+            error = false;
         }
 
         // Create a new Random object
