@@ -5,7 +5,6 @@ import java.awt.*;
 import java.util.Random;
 import java.awt.event.*;
 
-
 /**
  * Model subclass.
  * Created by Bas Haaksema on 05-Apr-16.

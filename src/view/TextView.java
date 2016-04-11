@@ -79,11 +79,7 @@ public class TextView extends AbstractView {
         add(paymentSpeed);
         paymentSpeed.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
-
-
-
         add(Box.createVerticalGlue()); //"fills" the rest of the layout so the spacing won't get weird
-
         updateView(); //update the view & set the current text values
     }
 
