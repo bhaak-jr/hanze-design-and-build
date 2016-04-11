@@ -37,6 +37,10 @@ public class CarParkController extends AbstractController {
         this.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(reserveButton); // Add to JPanel
 
+        JButton dontButton= new JButton("Don't click here"); // Create Button
+        dontButton.addActionListener(e -> carParkModel.setExplosion()); // Add Listener
+        this.setAlignmentX(Component.LEFT_ALIGNMENT);
+        add(dontButton); // Add to JPanel
         setVisible(true);
     }
 }

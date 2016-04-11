@@ -36,6 +36,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
 
     private boolean reservationCarPassHolder = false; //@dirty pease think of a better method currently used in the reserve method
     private boolean error = true; //set true if you want to display messages
+    private boolean explosion = false; //no explosion is default:(
 
     public CarParkModel(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         entranceCarQueue = new CarQueue();
@@ -485,5 +486,20 @@ public class CarParkModel extends AbstractModel implements Runnable {
      */
     public int getPaymentSpeed(){
         return paymentSpeed;
+    }
+
+    /**
+     * Totaly useless functionality
+     */
+    public void setExplosion(){
+        explosion = true;
+    }
+
+    /**
+     * Totaly useless functionality
+     * @return boolean Explosion true or false
+     */
+    public boolean getExplosion(){
+       return explosion;
     }
 }

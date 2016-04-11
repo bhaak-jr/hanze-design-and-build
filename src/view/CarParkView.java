@@ -1,7 +1,13 @@
 package src.view;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import src.model.*;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
  * View subclass.
@@ -47,6 +53,23 @@ public class CarParkView extends AbstractView {
     }
 
     public void updateView() {
+        /**
+         * Totaly usesless functionity
+         */
+        if(carParkModel.getExplosion()) {
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(new File("/home/jouke/Code/car-park-simulation/images/explosie.png"));
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+            ImageIcon imageIcon = new ImageIcon(image);
+            JLabel jLabel = new JLabel();
+            jLabel.setIcon(imageIcon);
+            add(jLabel);
+        }
+
         // Create a new car park image if the size has changed.
         if (!size.equals(getSize())) {
             size = getSize();
