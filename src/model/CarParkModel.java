@@ -122,11 +122,11 @@ public class CarParkModel extends AbstractModel implements Runnable {
             Car car = new AdHocCar();
 
             // Generate a random boolean and add it to the car field
-            boolean randomBool = new Random().nextBoolean();
+            boolean randomBool = random.nextBoolean();
             car.setIsParkingPassHolder(randomBool); // if true, the car is a parking pass holder
 
             // Generate a random int to see if the driver is a bad parker or not
-            int randomInt = new Random().nextInt(100);
+            int randomInt = random.nextInt(100);
             car.setIsBadParker(randomInt);
 
             entranceCarQueue.addCar(car);
