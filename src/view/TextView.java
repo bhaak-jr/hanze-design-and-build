@@ -20,6 +20,7 @@ public class TextView extends AbstractView {
     private JLabel exitSpeedValue = new JLabel();
     private JLabel paymentSpeedValue = new JLabel();
     private JLabel enterSpeedValue = new JLabel();
+    private JLabel error = new JLabel();
 
 
 
@@ -79,6 +80,12 @@ public class TextView extends AbstractView {
         add(paymentSpeed);
         paymentSpeed.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
 
+
+        JPanel errorPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        errorPanel.add(error);
+        add(errorPanel);
+        errorPanel.setMaximumSize(new Dimension(800,0)); //set the maximum size so it does not get stretched on the whole screen
+
         add(Box.createVerticalGlue()); //"fills" the rest of the layout so the spacing won't get weird
         updateView(); //update the view & set the current text values
     }
@@ -88,6 +95,13 @@ public class TextView extends AbstractView {
      * Sets the current text values
      */
     public void updateView() {
+        /**
+         * When there are only half of the total spots left in the carpark
+         * This will give an alert message
+         */
+        if(carParkModel.getFreeLocationAmount()<= (carParkModel.getNumberOfFloors()*carParkModel.getNumberOfPlaces()*carParkModel.getNumberOfRows() / 2)){ //when there are only half ot the total spots left
+            error.setText("WARNING: carpark is 50% or more occupied");
+        }
         amountOfCarsInTheParkValue.setText(String.valueOf(carParkModel.getAmountOfCarsInThePark())); //get the string value of the integer amountOfCarsInThePark
         amountOfRowsInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfRows()) + " rows");
         amountOfFloorsInTheParkValue.setText(String.valueOf(carParkModel.getNumberOfFloors()) + " floors");

@@ -105,9 +105,10 @@ public class CarParkModel extends AbstractModel implements Runnable {
          * This will give an alert message
          */
         if(getFreeLocationAmount()<= (getNumberOfFloors()*getNumberOfPlaces()*getNumberOfRows() / 2) && error){ //when there are only half ot the total spots left
-            JOptionPane.showMessageDialog(null, "The Carpark only has half of his spots left"); //alert message
+            JOptionPane.showMessageDialog(null, "The Carpark only has half of his spots left, see textview for the current errors"); //alert message
             Toolkit.getDefaultToolkit().beep(); //small beep alert
             error = false; //don't display this error again
+            notifyViews();
         }
 
         // Create a new Random object
@@ -327,7 +328,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
      *
      * @return int Free spots
      */
-    private int getFreeLocationAmount() {
+    public int getFreeLocationAmount() {
         int freeLocationAmount = 0;
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
