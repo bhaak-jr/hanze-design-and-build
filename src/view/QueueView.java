@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Jouke on 4/8/16.
+ * Created by Jouke & Bas.
  */
 public class QueueView extends AbstractView {
 
@@ -13,6 +13,8 @@ public class QueueView extends AbstractView {
     private JLabel paymentCarQueueValue = new JLabel();
     private JLabel exitCarQueueValue = new JLabel();
     private JSlider entranceSlider = new JSlider(SwingConstants.HORIZONTAL);
+    private JSlider paymentSlider = new JSlider(SwingConstants.HORIZONTAL);
+    private JSlider exitSlider = new JSlider(SwingConstants.HORIZONTAL);
 
 
     /**
@@ -40,12 +42,22 @@ public class QueueView extends AbstractView {
         add(paymentQueue);
         paymentQueue.setMaximumSize(new Dimension(800,0));
 
+        paymentSlider.setValue(carParkModel.getEntranceCarQueueSize());
+        paymentSlider.setEnabled(false);
+        add(paymentSlider);
+        paymentSlider.setMaximumSize(new Dimension(800,0));
+
 
         JPanel exitQueue = new JPanel(new FlowLayout(FlowLayout.LEFT));
         exitQueue.add(new JLabel("Exit Queue: "));
         exitQueue.add(exitCarQueueValue);
         add(exitQueue);
         exitQueue.setMaximumSize(new Dimension(800,0));
+
+        exitSlider.setValue(carParkModel.getEntranceCarQueueSize());
+        exitSlider.setEnabled(false);
+        add(exitSlider);
+        exitSlider.setMaximumSize(new Dimension(800,0));
 
         add(Box.createVerticalGlue()); //"fills" the rest of the layout so the spacing won't get weird
         updateView(); //update the view & set the current text values
@@ -59,8 +71,7 @@ public class QueueView extends AbstractView {
         paymentCarQueueValue.setText(String.valueOf(carParkModel.getPaymentCarQueueSize()));
         exitCarQueueValue.setText(String.valueOf(carParkModel.getExitCarQueueSize()));
         entranceSlider.setValue(carParkModel.getEntranceCarQueueSize());
+        paymentSlider.setValue(carParkModel.getPaymentCarQueueSize());
+        exitSlider.setValue(carParkModel.getPaymentCarQueueSize());
     }
-
-
-
 }
