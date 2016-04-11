@@ -59,7 +59,7 @@ public class CarParkView extends AbstractView {
         if(carParkModel.getExplosion()) {
             BufferedImage image = null;
             try {
-                image = ImageIO.read(new File("/home/jouke/Code/car-park-simulation/images/explosie.png"));
+                image = ImageIO.read(new File("images/explosion.png"));
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(1);
