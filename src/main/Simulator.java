@@ -44,14 +44,14 @@ public class Simulator {
         jtp.addTab("TextView", jp2);
         jtp.addTab("PieView", jp3);
         jtp.addTab("GraphView", jp4);
-        jtp.addTab("TextViewQueue", jp5);
+        jtp.addTab("QueueView", jp5);
 
         // Create views
         AbstractView carParkView = new CarParkView(carParkModel);
         AbstractView textView = new TextView(carParkModel);
         AbstractView pieView = new PieView(carParkModel);
         AbstractView graphView = new GraphView(carParkModel);
-        AbstractView textViewQueue = new TextViewQueue(carParkModel);
+        AbstractView textViewQueue = new QueueView(carParkModel);
 
         // Add views to tabs
         jp1.add(carParkView, BorderLayout.CENTER);

@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Created by Jouke on 4/8/16.
  */
-public class TextViewQueue extends AbstractView {
+public class QueueView extends AbstractView {
 
     private JLabel entranceCarQueueValue = new JLabel();
     private JLabel paymentCarQueueValue = new JLabel();
@@ -16,9 +16,9 @@ public class TextViewQueue extends AbstractView {
 
 
     /**
-     * Constructor for objects of class TextViewQueue
+     * Constructor for objects of class QueueView
      */
-    public TextViewQueue(CarParkModel carParkModel) {
+    public QueueView(CarParkModel carParkModel) {
         super(carParkModel);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //vertical layout
         setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
