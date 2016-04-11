@@ -99,9 +99,15 @@ public class CarParkModel extends AbstractModel implements Runnable {
         while (day > 6) {
             day -= 7;
         }
-        if(getFreeLocationAmount()<= (getNumberOfFloors()*getNumberOfPlaces()*getNumberOfRows() / 2) && error){ //when there are only 50 spots left
-            JOptionPane.showMessageDialog(null, "The Carpark only has half of his spots left"); //alert
-            error = false;
+
+        /**
+         * When there are only half of the total spots left in the carpark
+         * This will give an alert message
+         */
+        if(getFreeLocationAmount()<= (getNumberOfFloors()*getNumberOfPlaces()*getNumberOfRows() / 2) && error){ //when there are only half ot the total spots left
+            JOptionPane.showMessageDialog(null, "The Carpark only has half of his spots left"); //alert message
+            Toolkit.getDefaultToolkit().beep(); //small beep alert
+            error = false; //don't display this error again
         }
 
         // Create a new Random object
