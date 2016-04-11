@@ -304,10 +304,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         int floor = location.getFloor();
         int row = location.getRow();
         int place = location.getPlace();
-        if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
-            return false;
-        }
-        return true;
+        return !(floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces);
     }
 
     /**
@@ -315,7 +312,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
      *
      * @return int Free spots
      */
-    public int getFreeLocationAmount() {
+    private int getFreeLocationAmount() {
         int freeLocationAmount = 0;
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -338,8 +335,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
      */
     public int getAmountOfCarsInThePark() {
         int totalSpace = (numberOfFloors * numberOfRows * numberOfPlaces);
-        int amountOfCars = (totalSpace - getFreeLocationAmount());
-        return amountOfCars;
+        return totalSpace - getFreeLocationAmount();
     }
 
     /**
@@ -349,7 +345,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
      * @param   car
      * @return  Location
      */
-    public Location getFirstReservedLocation(ReservationCar car) {
+    private Location getFirstReservedLocation(ReservationCar car) {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
@@ -390,11 +386,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
         parkpass.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
-                    reservationCarPassHolder = true;
-                } else {//checkbox has been deselected
-                    reservationCarPassHolder = false;
-                };
+                reservationCarPassHolder = e.getStateChange() == ItemEvent.SELECTED;
             }
         });
         reserveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -459,8 +451,7 @@ public class CarParkModel extends AbstractModel implements Runnable {
      * @return String The current time
      */
     public String getCurrentTime(){
-        String currentTime = "day: " + day + " hour: " + hour + " minute: " + minute;
-        return currentTime;
+        return "day: " + day + " hour: " + hour + " minute: " + minute;
     }
 
     /**
