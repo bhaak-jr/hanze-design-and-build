@@ -209,6 +209,8 @@ public class CarParkModel extends AbstractModel implements Runnable {
                 continue;   // Skip the paymentCarQueue add() method
             }
             paymentCarQueue.addCar(car);
+
+            notifyViews();
         }
 
         // Remove cars from the paymentCarQueue queue and add them to the exitCarQueue.
@@ -221,6 +223,8 @@ public class CarParkModel extends AbstractModel implements Runnable {
             // TODO Handle payment.
             removeCarAt(car.getLocation());
             exitCarQueue.addCar(car);
+
+            notifyViews();
         }
 
         // Remove cars from the garage completely, again, limited by the amount of the exitSpeed field.

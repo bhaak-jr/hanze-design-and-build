@@ -12,9 +12,9 @@ public class QueueView extends AbstractView {
     private JLabel entranceCarQueueValue = new JLabel();
     private JLabel paymentCarQueueValue = new JLabel();
     private JLabel exitCarQueueValue = new JLabel();
-    private JSlider entranceSlider = new JSlider(SwingConstants.HORIZONTAL);
-    private JSlider paymentSlider = new JSlider(SwingConstants.HORIZONTAL);
-    private JSlider exitSlider = new JSlider(SwingConstants.HORIZONTAL);
+    private JSlider entranceSlider = new JSlider(SwingConstants.HORIZONTAL, 0, 10, 0);
+    private JSlider paymentSlider = new JSlider(SwingConstants.HORIZONTAL, 0, 10, 0);
+    private JSlider exitSlider = new JSlider(SwingConstants.HORIZONTAL, 0, 10, 0);
 
 
     /**
