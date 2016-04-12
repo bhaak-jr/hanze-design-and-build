@@ -8,8 +8,6 @@ import javax.swing.*;
  * Created by jouke on 4/4/16.
  */
 public class PieView extends AbstractView {
-    private Dimension size;
-    private Image carParkImage;
     private JLabel amountOfCarsInTheParkValue = new JLabel();
 
     public PieView(CarParkModel carParkModel) {

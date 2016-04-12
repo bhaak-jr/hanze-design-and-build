@@ -143,6 +143,8 @@ public class CarParkModel extends AbstractModel implements Runnable {
             car.setIsBadParker(randomInt);
 
             entranceCarQueue.addCar(car);
+
+            notifyViews();
         }
 
         // Remove car from the front of the queue and assign to a parking space.
